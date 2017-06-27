@@ -51,7 +51,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        return bookTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) //as! BookCell
+        return bookTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
     }
     
 }
