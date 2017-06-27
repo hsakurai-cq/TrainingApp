@@ -46,7 +46,7 @@ class BookCell: UITableViewCell {
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "2017/06/15"
+        label.text = "2017/06/26"
         label.backgroundColor = UIColor.green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
