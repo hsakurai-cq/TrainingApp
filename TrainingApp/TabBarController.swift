@@ -12,11 +12,6 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = "書籍一覧"
-//        navigationController?.navigationBar.isTranslucent = false
-//        
-//        view.backgroundColor = .red
-        
         
         let bookListController = BookListController()
         let navigationController = UINavigationController(rootViewController: bookListController)
