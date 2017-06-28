@@ -15,7 +15,8 @@ class ConfigurationController: UIViewController {
         
         navigationItem.title = "設定"
         navigationController?.navigationBar.isTranslucent = false
+        tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = UIColor.blue
     }
-    
+        
 }

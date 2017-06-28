@@ -17,6 +17,7 @@
 		8F3D94B81F00F91500C06DA1 /* BookListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94B71F00F91500C06DA1 /* BookListController.swift */; };
 		8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */; };
 		8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94BD1F01E56F00C06DA1 /* BookCell.swift */; };
+		8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94BF1F02398100C06DA1 /* AddBookController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		8F3D94B71F00F91500C06DA1 /* BookListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListController.swift; sourceTree = "<group>"; };
 		8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
 		8F3D94BD1F01E56F00C06DA1 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		8F3D94BF1F02398100C06DA1 /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				8F3D94A11F00A92600C06DA1 /* TabBarController.swift */,
 				8F3D94B71F00F91500C06DA1 /* BookListController.swift */,
 				8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */,
+				8F3D94BF1F02398100C06DA1 /* AddBookController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			files = (
 				8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */,
 				8F3D94A21F00A92600C06DA1 /* TabBarController.swift in Sources */,
+				8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */,
 				8F3D94B61F00BAD900C06DA1 /* LoginController.swift in Sources */,
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,
 				8F3D94B81F00F91500C06DA1 /* BookListController.swift in Sources */,
@@ -355,6 +359,7 @@
 				8F3D94B31F00A92700C06DA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

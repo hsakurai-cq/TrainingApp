@@ -11,17 +11,16 @@ import UIKit
 class BookListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var bookTableView: UITableView!
-    let bookArray: Array = ["first", "second", "third"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        titleLabel.text = "書籍一覧"
-        titleLabel.font = UIFont.systemFont(ofSize: 20)
-        navigationItem.titleView = titleLabel
+        self.tabBarController?.navigationItem.title = "書籍一覧"
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(handleAddButton))
         
         navigationController?.navigationBar.isTranslucent = false
+        tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = UIColor.red
         
         //print(navigationController?.navigationBar.frame.size.height)
@@ -32,13 +31,15 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         bookTableView.register(BookCell.self, forCellReuseIdentifier: "bookCell")
         bookTableView.dataSource = self
         bookTableView.delegate = self
-        
-        let readMoreButton = UIButton(frame: CGRect(x: 0, y: view.frame.height - 40 - 49, width: view.frame.width, height: 40))
-        readMoreButton.setTitle("reda more...", for: UIControlState())
-        readMoreButton.backgroundColor = UIColor.darkGray
 
         view.addSubview(bookTableView)
-        view.addSubview(readMoreButton)
+    }
+    
+    func handleAddButton() {
+        print("add button")
+        let addBookController = AddBookController()
+        let toAddBook = UINavigationController(rootViewController: addBookController)
+        present(toAddBook, animated: true, completion: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +47,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookArray.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
