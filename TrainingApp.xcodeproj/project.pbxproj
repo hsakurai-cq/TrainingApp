@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F330F321F036B7100091056 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F311F036B7100091056 /* EditBookController.swift */; };
+		8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F331F03C80C00091056 /* AccountConfigController.swift */; };
 		8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */; };
 		8F3D94A21F00A92600C06DA1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94A11F00A92600C06DA1 /* TabBarController.swift */; };
 		8F3D94A51F00A92600C06DA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F3D94A31F00A92600C06DA1 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		8F330F311F036B7100091056 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
+		8F330F331F03C80C00091056 /* AccountConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfigController.swift; sourceTree = "<group>"; };
 		8F3D949C1F00A92600C06DA1 /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F3D94A11F00A92600C06DA1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */,
 				8F3D94BF1F02398100C06DA1 /* AddBookController.swift */,
 				8F330F311F036B7100091056 /* EditBookController.swift */,
+				8F330F331F03C80C00091056 /* AccountConfigController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */,
 				8F3D94B61F00BAD900C06DA1 /* LoginController.swift in Sources */,
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,
+				8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */,
 				8F3D94B81F00F91500C06DA1 /* BookListController.swift in Sources */,
 				8F3D94A81F00A92600C06DA1 /* TrainingApp.xcdatamodeld in Sources */,
 				8F330F321F036B7100091056 /* EditBookController.swift in Sources */,

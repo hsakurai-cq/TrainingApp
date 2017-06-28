@@ -19,14 +19,9 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(handleAddButton))
         
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = UIColor.red
-        
-        //print(navigationController?.navigationBar.frame.size.height)
-        //print(tabBarController?.tabBar.frame.size.height)
         
         bookTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100))
         

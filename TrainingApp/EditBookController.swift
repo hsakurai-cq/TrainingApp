@@ -40,6 +40,12 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         editPurchaseDateField.inputAccessoryView = toolBar
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.title = "書籍編集"
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: self, action: #selector(handleBackButton))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleEditFinished))
+    }
+    
     func handleStorage() {
         
     }

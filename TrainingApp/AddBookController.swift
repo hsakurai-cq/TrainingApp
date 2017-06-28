@@ -68,6 +68,7 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
         print("imagePicker canceled...")
     }
     
@@ -90,7 +91,7 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         return imageView
     }()
     
-    let registerImageButton: UIButton = {
+    lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .red
         button.setTitle("画像添付", for: UIControlState())
