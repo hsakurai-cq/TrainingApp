@@ -10,9 +10,7 @@ import UIKit
 
 class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var toolBar: UIToolbar!
-    let todayDate = Date()
-    
+    var toolBar: UIToolbar!    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +28,6 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         view.addSubview(bookPriceTextField)
         view.addSubview(purchaseDateLabel)
         view.addSubview(purchaseDateField)
-        //view.addSubview(datePicker)
         setupAddBookViews()
         
         purchaseDateField.inputView = datePicker
@@ -41,10 +38,6 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         let toolBarBtn = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(tappedToolBarBtn))
         toolBar.items = [toolBarBtn]
         purchaseDateField.inputAccessoryView = toolBar
-        
-        
-        
-        
     }
     
     func handleClose() {

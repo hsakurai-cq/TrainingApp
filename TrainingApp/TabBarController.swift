@@ -15,12 +15,12 @@ class TabBarController: UITabBarController {
         
         let bookListController = BookListController()
         let navigationController = UINavigationController(rootViewController: bookListController)
-        navigationController.title = "書籍一覧"
+        bookListController.title = "書籍一覧"
         navigationController.tabBarItem.image = UIImage(named: "book_icon")
         
         let configurationController = ConfigurationController()
         let secondNavigationController = UINavigationController(rootViewController: configurationController)
-        secondNavigationController.title = "設定"
+        configurationController.title = "設定"
         secondNavigationController.tabBarItem.image = UIImage(named: "user_icon")
         
         viewControllers = [navigationController, secondNavigationController]

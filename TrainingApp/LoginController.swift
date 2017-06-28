@@ -91,6 +91,7 @@ class LoginController: UIViewController {
     func handleLogin() {
         let tabBarController = TabBarController()
         let navController = UINavigationController(rootViewController: tabBarController)
+        //navigationController?.pushViewController(navController, animated: true)
         present(navController, animated: true, completion: nil)
     }
     
