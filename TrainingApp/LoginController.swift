@@ -16,27 +16,20 @@ class LoginController: UIViewController {
         navigationItem.title = "書籍一覧"
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.green
-        view.addSubview(topContainerView)
-        view.addSubview(bottomContainerView)
-        view.addSubview(loginButton)
         
-        setupTopContainerView()
-        setupBottomContainerView()
-        setupLoginButton()
+        view.addSubview(emailLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordLabel)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
+        setupLoginViews()
+        
     }
-    
-    let topContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        return view
-    }()
     
     let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "メールアドレス"
-        label.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .white
         label.backgroundColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,22 +40,15 @@ class LoginController: UIViewController {
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "email"
+        tf.backgroundColor = UIColor.white
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
-    }()
-    
-    let bottomContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.masksToBounds = true
-        return view
     }()
     
     let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "パスワード"
-        label.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .white
         label.backgroundColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,6 +59,8 @@ class LoginController: UIViewController {
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "password"
+        tf.backgroundColor = .white
+        tf.isSecureTextEntry = true
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -95,70 +83,37 @@ class LoginController: UIViewController {
         present(navController, animated: true, completion: nil)
     }
     
-    var topContainerViewHeightAnchor: NSLayoutConstraint?
-    var emailLabelHeightAnchor: NSLayoutConstraint?
-    var emailTextFieldHeightAnchor: NSLayoutConstraint?
-    var bottomContainerViewHeightAnchor: NSLayoutConstraint?
-    var passwordLabelHeightAnchor: NSLayoutConstraint?
-    var passwordTextFieldHeightAnchor: NSLayoutConstraint?
-    
-    func setupTopContainerView() {
+    func setupLoginViews() {
         
-        topContainerView.addSubview(emailLabel)
-        topContainerView.addSubview(emailTextField)
+        emailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 94).isActive = true
+        emailLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        emailLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
-        topContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        topContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -120).isActive = true
-        topContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -60).isActive = true
-        topContainerViewHeightAnchor = topContainerView.heightAnchor.constraint(equalToConstant: 60)
-        topContainerViewHeightAnchor?.isActive = true
+        emailTextField.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 2).isActive = true
+        emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        emailLabel.leftAnchor.constraint(equalTo: topContainerView.leftAnchor).isActive = true
-        emailLabel.topAnchor.constraint(equalTo: topContainerView.topAnchor).isActive = true
-        emailLabel.widthAnchor.constraint(equalTo: topContainerView.widthAnchor).isActive = true
-        emailLabelHeightAnchor = emailLabel.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 2/7)
-        emailLabelHeightAnchor?.isActive = true
+        passwordLabel.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true
+        passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30).isActive = true
+        passwordLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        passwordLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
-        emailTextField.leftAnchor.constraint(equalTo: topContainerView.leftAnchor, constant: 12).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor).isActive = true
-        emailTextField.widthAnchor.constraint(equalTo: topContainerView.widthAnchor).isActive = true
-        emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: topContainerView.heightAnchor, multiplier: 5/7)
-        emailTextFieldHeightAnchor?.isActive = true
+        passwordTextField.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 2).isActive = true
+        passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        loginButton.leftAnchor.constraint(equalTo: passwordTextField.leftAnchor).isActive = true
+        loginButton.rightAnchor.constraint(equalTo: passwordTextField.rightAnchor).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 54).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 59).isActive = true
     }
     
-    func setupBottomContainerView() {
-        
-        bottomContainerView.addSubview(passwordLabel)
-        bottomContainerView.addSubview(passwordTextField)
-        
-        bottomContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        bottomContainerView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor, constant: 12).isActive = true
-        bottomContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -60).isActive = true
-        bottomContainerViewHeightAnchor = bottomContainerView.heightAnchor.constraint(equalToConstant: 60)
-        bottomContainerViewHeightAnchor?.isActive = true
-        
-        passwordLabel.leftAnchor.constraint(equalTo: topContainerView.leftAnchor).isActive = true
-        passwordLabel.topAnchor.constraint(equalTo: bottomContainerView.topAnchor).isActive = true
-        passwordLabel.widthAnchor.constraint(equalTo: bottomContainerView.widthAnchor).isActive = true
-        passwordLabelHeightAnchor = passwordLabel.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 2/7)
-        passwordLabelHeightAnchor?.isActive = true
-        
-        passwordTextField.leftAnchor.constraint(equalTo: bottomContainerView.leftAnchor, constant: 12).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor).isActive = true
-        passwordTextField.widthAnchor.constraint(equalTo: bottomContainerView.widthAnchor).isActive = true
-        passwordLabelHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: bottomContainerView.heightAnchor, multiplier: 5/7)
-        passwordLabelHeightAnchor?.isActive = true
-        
-    }
     
-    func setupLoginButton() {
-        
-        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: 12).isActive = true
-        loginButton.widthAnchor.constraint(equalTo: bottomContainerView.widthAnchor).isActive = true
-        loginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    }
-
+    
+    
     
 }
 
