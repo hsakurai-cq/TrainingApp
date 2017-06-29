@@ -11,6 +11,7 @@ import UIKit
 class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var toolBar: UIToolbar!
+    var txtActiveField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,10 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         view.addSubview(editPurchaseDateField)
         setupEditBookViews()
         
+        editBookNameTextField.delegate = self
+        editBookPriceTextField.delegate = self
+        editPurchaseDateField.delegate = self
+        
         editPurchaseDateField.inputView = datePicker
         toolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height / 6, width: view.frame.size.width, height: 40))
         toolBar.layer.position = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 20)
@@ -41,9 +46,49 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.tabBarController?.navigationItem.title = "書籍編集"
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: self, action: #selector(handleBackButton))
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleEditFinished))
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    func handleKeyboardWillShowNotification(_ notification: Notification) {
+        
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        
+        if txtLimit >= kbdLimit {
+            let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
+            UIView.animate(withDuration: duration!, animations: { () in
+                let transform = CGAffineTransform(translationX: 0, y: -(txtLimit - kbdLimit))
+                self.view.transform = transform
+                
+                print("テキストフィールドの下辺：(\(txtLimit))")
+                print("キーボードの上辺：(\(kbdLimit))")
+                print("myBoundSize.height\(myBoundSize.height)")
+            })
+        }
+    }
+    
+    func handleKeyboardWillHideNotification(_ notification: Notification) {
+        let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            self.view.transform = CGAffineTransform.identity
+        })
     }
     
     func handleStorage() {
@@ -70,6 +115,7 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
         print("imagePicker canceled...")
     }
     
@@ -82,6 +128,29 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         let dateFormmtter = DateFormatter()
         dateFormmtter.dateFormat = "yyyy/MM/dd"
         editPurchaseDateField.text = dateFormmtter.string(from: sender.date)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.editBookNameTextField.isFirstResponder {
+            self.editBookNameTextField.resignFirstResponder()
+        }
+        if self.editBookPriceTextField.isFirstResponder {
+            self.editBookPriceTextField.resignFirstResponder()
+        }
+        if self.editPurchaseDateField.isFirstResponder {
+            self.editPurchaseDateField.resignFirstResponder()
+        }
+        
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        txtActiveField = textField
+        return true
     }
     
     func handleBackButton() {

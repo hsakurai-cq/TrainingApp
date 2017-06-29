@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,9 @@ class LoginController: UIViewController {
         navigationItem.title = "書籍一覧"
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.green
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)
@@ -79,8 +82,22 @@ class LoginController: UIViewController {
     func handleLogin() {
         let tabBarController = TabBarController()
         let navController = UINavigationController(rootViewController: tabBarController)
-        //navigationController?.pushViewController(navController, animated: true)
         present(navController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.emailTextField.isFirstResponder {
+            self.emailTextField.resignFirstResponder()
+        }
+        if self.passwordTextField.isFirstResponder {
+            self.passwordTextField.resignFirstResponder()
+        }
+        
     }
     
     func setupLoginViews() {

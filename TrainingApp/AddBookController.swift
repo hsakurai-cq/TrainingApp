@@ -10,7 +10,8 @@ import UIKit
 
 class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var toolBar: UIToolbar!    
+    var toolBar: UIToolbar!
+    var txtActiveField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,10 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         view.addSubview(purchaseDateField)
         setupAddBookViews()
         
+        bookNameTextField.delegate = self
+        bookPriceTextField.delegate = self
+        purchaseDateField.delegate = self
+        
         purchaseDateField.inputView = datePicker
         toolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height / 6, width: view.frame.size.width, height: 40))
         toolBar.layer.position = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 20)
@@ -38,6 +43,48 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         let toolBarBtn = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(tappedToolBarBtn))
         toolBar.items = [toolBarBtn]
         purchaseDateField.inputAccessoryView = toolBar
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
+    func handleKeyboardWillShowNotification(_ notification: Notification) {
+        
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        
+        if txtLimit >= kbdLimit {
+            let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
+            UIView.animate(withDuration: duration!, animations: { () in
+                let transform = CGAffineTransform(translationX: 0, y: -(txtLimit - kbdLimit))
+                self.view.transform = transform
+                
+                print("テキストフィールドの下辺：(\(txtLimit))")
+                print("キーボードの上辺：(\(kbdLimit))")
+                print("myBoundSize.height\(myBoundSize.height)")
+            })
+        }
+    }
+    
+    func handleKeyboardWillHideNotification(_ notification: Notification) {
+        let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            self.view.transform = CGAffineTransform.identity
+        })
     }
     
     func handleClose() {
@@ -83,9 +130,31 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         purchaseDateField.text = dateFormmtter.string(from: sender.date)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.bookNameTextField.isFirstResponder {
+            self.bookNameTextField.resignFirstResponder()
+        }
+        if self.bookPriceTextField.isFirstResponder {
+            self.bookPriceTextField.resignFirstResponder()
+        }
+        if self.purchaseDateField.isFirstResponder {
+            self.purchaseDateField.resignFirstResponder()
+        }
+        
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        txtActiveField = textField
+        return true
+    }
+    
     let registeredImageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.image = UIImage(named: "book_icon")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
