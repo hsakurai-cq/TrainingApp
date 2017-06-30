@@ -15,10 +15,6 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.navigationItem.title = "書籍一覧"
-        
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(handleAddButton))
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = UIColor.red
@@ -36,6 +32,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
         self.tabBarController?.navigationItem.title = "書籍一覧"
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(handleAddButton))
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -43,7 +40,6 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func handleAddButton() {
-        print("add button")
         let addBookController = AddBookController()
         let toAddBook = UINavigationController(rootViewController: addBookController)
         present(toAddBook, animated: true, completion: nil)

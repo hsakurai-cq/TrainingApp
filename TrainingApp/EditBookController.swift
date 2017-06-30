@@ -8,41 +8,35 @@
 
 import UIKit
 
-class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditBookController: UIViewController {
     
-    var toolBar: UIToolbar!
     var txtActiveField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.purple
-        self.tabBarController?.navigationItem.title = "書籍編集"
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: self, action: #selector(handleBackButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleEditFinished))
+        print(view.frame.height)
         
-        view.addSubview(editedImageView)
-        view.addSubview(editImageButton)
-        view.addSubview(editBookNameLabel)
-        view.addSubview(editBookNameTextField)
-        view.addSubview(editBookPriceLabel)
-        view.addSubview(editBookPriceTextField)
-        view.addSubview(editPurchaseDateLabel)
-        view.addSubview(editPurchaseDateField)
+        view.backgroundColor = UIColor.white
+//        self.tabBarController?.navigationItem.title = "書籍編集"
+//        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: self, action: #selector(handleBackButton))
+//        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleEditFinished))
+        
+        view.addSubview(registeredImageView)
+        view.addSubview(registerImageButton)
+        view.addSubview(bookNameLabel)
+        view.addSubview(bookNameTextField)
+        view.addSubview(bookPriceLabel)
+        view.addSubview(bookPriceTextField)
+        view.addSubview(purchaseDateLabel)
+        view.addSubview(purchaseDateField)
         setupEditBookViews()
         
-        editBookNameTextField.delegate = self
-        editBookPriceTextField.delegate = self
-        editPurchaseDateField.delegate = self
+        bookNameTextField.delegate = self
+        bookPriceTextField.delegate = self
+        purchaseDateField.delegate = self
         
-        editPurchaseDateField.inputView = datePicker
-        toolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height / 6, width: view.frame.size.width, height: 40))
-        toolBar.layer.position = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 20)
-        toolBar.tintColor = UIColor.white
-        toolBar.backgroundColor = UIColor.black
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(tappedToolBarBtn))
-        toolBar.items = [toolBarBtn]
-        editPurchaseDateField.inputAccessoryView = toolBar
+        purchaseDateField.inputView = datePicker
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,59 +89,6 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         
     }
     
-    func registerImage() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var selectedImageFromPicker: UIImage?
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            editedImageView.image = selectedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-        print("imagePicker canceled...")
-    }
-    
-    func tappedToolBarBtn(sender: UIBarButtonItem) {
-        editPurchaseDateField.resignFirstResponder()
-        
-    }
-    
-    func changedDateEvent(sender: UIDatePicker) {
-        let dateFormmtter = DateFormatter()
-        dateFormmtter.dateFormat = "yyyy/MM/dd"
-        editPurchaseDateField.text = dateFormmtter.string(from: sender.date)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.editBookNameTextField.isFirstResponder {
-            self.editBookNameTextField.resignFirstResponder()
-        }
-        if self.editBookPriceTextField.isFirstResponder {
-            self.editBookPriceTextField.resignFirstResponder()
-        }
-        if self.editPurchaseDateField.isFirstResponder {
-            self.editPurchaseDateField.resignFirstResponder()
-        }
-        
-    }
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         txtActiveField = textField
         return true
@@ -162,75 +103,55 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         print("Edit Finished...")
     }
     
-    let editedImageView: UIImageView = {
+    let registeredImageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.image = UIImage(named: "book_icon")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
     }()
     
-    let editImageButton: UIButton = {
+    lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
-        button.setTitle("画像添付", for: UIControlState())
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.buttonConfig(text: "画像添付", backgroundColor: .red, font: UIFont.systemFont(ofSize: 16))
         button.setTitleColor(.white, for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
     }()
     
-    let editBookNameLabel: UILabel = {
+    let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "書籍名"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "書籍名")
         return label
     }()
     
-    let editBookNameTextField: UITextField = {
+    let bookNameTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.blue
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
-    let editBookPriceLabel: UILabel = {
+    let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "金額"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "金額")
         return label
     }()
     
-    let editBookPriceTextField: UITextField = {
+    let bookPriceTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.blue
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
-    let editPurchaseDateLabel: UILabel = {
+    let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "購入日"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "購入日")
         return label
     }()
     
-    let editPurchaseDateField: UITextField = {
-        let field = UITextField()
-        field.backgroundColor = UIColor.blue
-        field.translatesAutoresizingMaskIntoConstraints = false
-        
-        return field
+    let purchaseDateField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
     }()
     
     let datePicker: UIDatePicker = {
@@ -241,46 +162,102 @@ class EditBookController: UIViewController, UITextFieldDelegate, UIPickerViewDel
     }()
     
     func setupEditBookViews() {
+            
+        registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        registeredImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        editedImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        editedImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        editedImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        editedImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        registerImageButton.leftAnchor.constraint(equalTo: registeredImageView.rightAnchor, constant: 30).isActive = true
+        registerImageButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        registerImageButton.centerYAnchor.constraint(equalTo: registeredImageView.centerYAnchor).isActive = true
+        registerImageButton.heightAnchor.constraint(equalTo: registeredImageView.heightAnchor, multiplier: 2/5).isActive = true
         
-        editImageButton.leftAnchor.constraint(equalTo: editedImageView.rightAnchor, constant: 30).isActive = true
-        editImageButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        editImageButton.centerYAnchor.constraint(equalTo: editedImageView.centerYAnchor).isActive = true
-        editImageButton.heightAnchor.constraint(equalTo: editedImageView.heightAnchor, multiplier: 2/5).isActive = true
+        bookNameLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookNameLabel.topAnchor.constraint(equalTo: registeredImageView.bottomAnchor, constant: 30).isActive = true
+        bookNameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bookNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        editBookNameLabel.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editBookNameLabel.topAnchor.constraint(equalTo: editedImageView.bottomAnchor, constant: 30).isActive = true
-        editBookNameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        editBookNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        bookNameTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookNameTextField.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 2).isActive = true
+        bookNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        bookNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        editBookNameTextField.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editBookNameTextField.topAnchor.constraint(equalTo: editBookNameLabel.bottomAnchor, constant: 2).isActive = true
-        editBookNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        editBookNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        bookPriceLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookPriceLabel.topAnchor.constraint(equalTo: bookNameTextField.bottomAnchor, constant: 30).isActive = true
+        bookPriceLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bookPriceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        editBookPriceLabel.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editBookPriceLabel.topAnchor.constraint(equalTo: editBookNameTextField.bottomAnchor, constant: 30).isActive = true
-        editBookPriceLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        editBookPriceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        bookPriceTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookPriceTextField.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: 2).isActive = true
+        bookPriceTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        bookPriceTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        editBookPriceTextField.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editBookPriceTextField.topAnchor.constraint(equalTo: editBookPriceLabel.bottomAnchor, constant: 2).isActive = true
-        editBookPriceTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        editBookPriceTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        purchaseDateLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        purchaseDateLabel.topAnchor.constraint(equalTo: bookPriceTextField.bottomAnchor, constant: 30).isActive = true
+        purchaseDateLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        purchaseDateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        editPurchaseDateLabel.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editPurchaseDateLabel.topAnchor.constraint(equalTo: editBookPriceTextField.bottomAnchor, constant: 30).isActive = true
-        editPurchaseDateLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        editPurchaseDateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        editPurchaseDateField.leftAnchor.constraint(equalTo: editedImageView.leftAnchor).isActive = true
-        editPurchaseDateField.topAnchor.constraint(equalTo: editPurchaseDateLabel.bottomAnchor, constant: 2).isActive = true
-        editPurchaseDateField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        editPurchaseDateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        purchaseDateField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        purchaseDateField.topAnchor.constraint(equalTo: purchaseDateLabel.bottomAnchor, constant: 2).isActive = true
+        purchaseDateField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        purchaseDateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
+}
+
+
+extension EditBookController: UITextFieldDelegate {
+    
+    func changedDateEvent(sender: UIDatePicker) {
+        let dateFormmtter = DateFormatter()
+        dateFormmtter.dateFormat = "yyyy/MM/dd"
+        purchaseDateField.text = dateFormmtter.string(from: sender.date)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.bookNameTextField.isFirstResponder {
+            self.bookNameTextField.resignFirstResponder()
+        }
+        if self.bookPriceTextField.isFirstResponder {
+            self.bookPriceTextField.resignFirstResponder()
+        }
+        if self.purchaseDateField.isFirstResponder {
+            self.purchaseDateField.resignFirstResponder()
+        }
+        
+    }
+
+}
+
+extension EditBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func registerImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            registeredImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        print("imagePicker canceled...")
+    }
 }

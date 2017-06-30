@@ -12,8 +12,8 @@ class AccountConfigController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.cyan
+        
+        view.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "アカウント設定"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
@@ -39,55 +39,38 @@ class AccountConfigController: UIViewController {
     
     let emailConfigLabel: UILabel = {
         let label = UILabel()
-        label.text = "メールアドレス"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "メールアドレス")
         return label
     }()
     
     let emailConfigTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.yellow
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     let passwordConfigLabel: UILabel = {
         let label = UILabel()
-        label.text = "パスワード"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "パスワード")
         return label
     }()
     
     
     let passwordConfigTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.yellow
-        tf.isSecureTextEntry = true
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     let passwordCheckLabel: UILabel = {
         let label = UILabel()
-        label.text = "パスワード確認"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "パスワード確認")
         return label
     }()
     
     let passwordCheckTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.yellow
-        tf.isSecureTextEntry = true
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     

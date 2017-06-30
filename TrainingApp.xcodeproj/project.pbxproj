@@ -20,6 +20,7 @@
 		8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */; };
 		8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94BD1F01E56F00C06DA1 /* BookCell.swift */; };
 		8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D94BF1F02398100C06DA1 /* AddBookController.swift */; };
+		8FBA4D641F05D3B000F00B60 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBA4D631F05D3B000F00B60 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8F3D94B91F00F9C600C06DA1 /* ConfigurationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
 		8F3D94BD1F01E56F00C06DA1 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		8F3D94BF1F02398100C06DA1 /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
+		8FBA4D631F05D3B000F00B60 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		8F3D949E1F00A92600C06DA1 /* TrainingApp */ = {
 			isa = PBXGroup;
 			children = (
+				8FBA4D621F05D36F00F00B60 /* Utils */,
 				8F3D94BC1F01E54000C06DA1 /* View */,
 				8F3D94BB1F00F9CD00C06DA1 /* Controller */,
 				8FBA4D5D1F0508E600F00B60 /* Helper */,
@@ -110,6 +113,14 @@
 			children = (
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		8FBA4D621F05D36F00F00B60 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8FBA4D631F05D3B000F00B60 /* Util.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 			files = (
 				8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */,
 				8F3D94A21F00A92600C06DA1 /* TabBarController.swift in Sources */,
+				8FBA4D641F05D3B000F00B60 /* Util.swift in Sources */,
 				8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */,
 				8F3D94B61F00BAD900C06DA1 /* LoginController.swift in Sources */,
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,

@@ -8,13 +8,14 @@
 
 import UIKit
 
-class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddBookController: UIViewController {
     
-    var toolBar: UIToolbar!
     var txtActiveField = UITextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(view.frame.height)
         
         view.backgroundColor = UIColor.white
         navigationItem.title = "書籍追加"
@@ -36,13 +37,6 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
         purchaseDateField.delegate = self
         
         purchaseDateField.inputView = datePicker
-        toolBar = UIToolbar(frame: CGRect(x: 0, y: view.frame.size.height / 6, width: view.frame.size.width, height: 40))
-        toolBar.layer.position = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 20)
-        toolBar.tintColor = UIColor.white
-        toolBar.backgroundColor = UIColor.black
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(tappedToolBarBtn))
-        toolBar.items = [toolBarBtn]
-        purchaseDateField.inputAccessoryView = toolBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,66 +86,10 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     }
     
     func handleStorage() {
-        
+        print("handle storage...")
     }
     
-    func registerImage() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var selectedImageFromPicker: UIImage?
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            registeredImageView.image = selectedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-        print("imagePicker canceled...")
-    }
-    
-    func tappedToolBarBtn(sender: UIBarButtonItem) {
-        purchaseDateField.resignFirstResponder()
-        
-    }
-    
-    func changedDateEvent(sender: UIDatePicker) {
-        let dateFormmtter = DateFormatter()
-        dateFormmtter.dateFormat = "yyyy/MM/dd"
-        purchaseDateField.text = dateFormmtter.string(from: sender.date)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.bookNameTextField.isFirstResponder {
-            self.bookNameTextField.resignFirstResponder()
-        }
-        if self.bookPriceTextField.isFirstResponder {
-            self.bookPriceTextField.resignFirstResponder()
-        }
-        if self.purchaseDateField.isFirstResponder {
-            self.purchaseDateField.resignFirstResponder()
-        }
-        
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        txtActiveField = textField
-        return true
-    }
+   
     
     let registeredImageView: UIImageView = {
         let imageView = UIImageView()
@@ -162,65 +100,46 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
-        button.setTitle("画像添付", for: UIControlState())
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.buttonConfig(text: "画像添付", backgroundColor: .red, font: .systemFont(ofSize: 16))
         button.setTitleColor(.white, for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
     }()
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "書籍名"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "書籍")
         return label
     }()
     
     let bookNameTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.blue
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "金額"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "金額")
         return label
     }()
     
     let bookPriceTextField: UITextField = {
         let tf = UITextField()
-        tf.backgroundColor = UIColor.blue
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "購入日"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.backgroundColor = UIColor.red
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "購入日")
         return label
     }()
     
     let purchaseDateField: UITextField = {
-        let field = UITextField()
-        field.backgroundColor = UIColor.blue
-        field.translatesAutoresizingMaskIntoConstraints = false
-        
-        return field
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
     }()
     
     let datePicker: UIDatePicker = {
@@ -232,8 +151,10 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     func setupAddBookViews() {
         
+        print(view.topAnchor)
+        
         registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 94).isActive = true
+        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30 + 64).isActive = true
         registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         registeredImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
@@ -275,12 +196,60 @@ class AddBookController: UIViewController, UITextFieldDelegate, UIPickerViewDele
 
 }
 
+extension AddBookController: UITextFieldDelegate {
+   
+    func changedDateEvent(sender: UIDatePicker) {
+        let dateFormmtter = DateFormatter()
+        dateFormmtter.dateFormat = "yyyy/MM/dd"
+        purchaseDateField.text = dateFormmtter.string(from: sender.date)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.bookNameTextField.isFirstResponder {
+            self.bookNameTextField.resignFirstResponder()
+        }
+        if self.bookPriceTextField.isFirstResponder {
+            self.bookPriceTextField.resignFirstResponder()
+        }
+        if self.purchaseDateField.isFirstResponder {
+            self.purchaseDateField.resignFirstResponder()
+        }
+        
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        txtActiveField = textField
+        return true
+    }
+}
 
-
-
-
-
-
-
-
-
+extension AddBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func registerImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            registeredImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        print("imagePicker canceled...")
+    }
+}
