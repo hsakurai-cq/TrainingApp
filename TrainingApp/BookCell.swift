@@ -73,7 +73,4 @@ class BookCell: UITableViewCell {
         dateLabel.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: 10).isActive = true
         
     }
-    
-    
-    
 }

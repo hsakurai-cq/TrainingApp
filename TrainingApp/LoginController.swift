@@ -111,20 +111,4 @@ class LoginController: UIViewController, UITextFieldDelegate {
         loginButton.heightAnchor.constraint(equalToConstant: 59).isActive = true
     }
     
-    
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-

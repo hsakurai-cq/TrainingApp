@@ -25,6 +25,4 @@ class TabBarController: UITabBarController {
         
         viewControllers = [navigationController, secondNavigationController]
     }
-
-   
 }

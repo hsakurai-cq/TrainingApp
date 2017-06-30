@@ -28,7 +28,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         view.addSubview(passwordCheckTextField)
         setupConfigViews()
         
-        
         emailConfigTextField.delegate = self
         passwordConfigTextField.delegate = self
         passwordCheckTextField.delegate = self
@@ -78,8 +77,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
             self.view.transform = CGAffineTransform.identity
         })
     }
-    
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -123,7 +121,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         label.labelConfig(text: "パスワード")
         return label
     }()
-    
     
     let passwordConfigTextField: UITextField = {
         let tf = UITextField()
@@ -176,6 +173,4 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         passwordCheckTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    
-
 }

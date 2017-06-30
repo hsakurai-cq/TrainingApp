@@ -85,15 +85,5 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         loadMoreButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         loadMoreButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
-    
-    
+        
 }
-
-
-
-
-
-
-
-
-

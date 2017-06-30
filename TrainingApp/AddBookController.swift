@@ -89,8 +89,6 @@ class AddBookController: UIViewController {
         print("handle storage...")
     }
     
-   
-    
     let registeredImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

@@ -34,4 +34,3 @@ extension UIButton {
         self.titleLabel?.font = font
     }
 }
-
