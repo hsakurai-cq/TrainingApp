@@ -13,7 +13,7 @@ extension UILabel {
     func labelConfig(text: String) {
         self.text = text
         self.font = UIFont.systemFont(ofSize: 15)
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.white
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.masksToBounds = true
     }
@@ -21,15 +21,17 @@ extension UILabel {
 
 extension UITextField {
     func textFieldConfig() {
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.borderStyle = .roundedRect
     }
 }
 
 extension UIButton {
-    func buttonConfig(text: String, backgroundColor: UIColor, font: UIFont) {
+    func buttonConfig(backgroundColor: UIColor, font: UIFont) {
         self.backgroundColor = backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.font = font
     }
 }
+

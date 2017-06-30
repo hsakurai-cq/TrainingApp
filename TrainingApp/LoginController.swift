@@ -15,7 +15,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
 
         navigationItem.title = "書籍一覧"
         navigationController?.navigationBar.isTranslucent = false
-        view.backgroundColor = UIColor.green
+        view.backgroundColor = UIColor.white
         
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -31,50 +31,33 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "メールアドレス"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .white
-        label.backgroundColor = .green
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "メールアドレス")
         return label
     }()
     
     let emailTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "email"
-        tf.backgroundColor = UIColor.white
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     let passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = "パスワード"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .white
-        label.backgroundColor = .green
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.layer.masksToBounds = true
+        label.labelConfig(text: "パスワード")
         return label
     }()
     
     let passwordTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "password"
-        tf.backgroundColor = .white
-        tf.isSecureTextEntry = true
-        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.textFieldConfig()
         return tf
     }()
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.darkGray
+        button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
         button.setTitle("Login", for: UIControlState())
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: UIControlState())
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
@@ -104,7 +87,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         emailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         emailLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 94).isActive = true
-        emailLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        emailLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
         emailTextField.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true
@@ -114,7 +97,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         passwordLabel.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true
         passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30).isActive = true
-        passwordLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        passwordLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         passwordLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
         passwordTextField.leftAnchor.constraint(equalTo: emailLabel.leftAnchor).isActive = true

@@ -15,12 +15,7 @@ class EditBookController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(view.frame.height)
-        
         view.backgroundColor = UIColor.white
-//        self.tabBarController?.navigationItem.title = "書籍編集"
-//        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "戻る", style: .plain, target: self, action: #selector(handleBackButton))
-//        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleEditFinished))
         
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)
@@ -68,7 +63,7 @@ class EditBookController: UIViewController {
         if txtLimit >= kbdLimit {
             let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
             UIView.animate(withDuration: duration!, animations: { () in
-                let transform = CGAffineTransform(translationX: 0, y: -(txtLimit - kbdLimit))
+                let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
                 self.view.transform = transform
                 
                 print("テキストフィールドの下辺：(\(txtLimit))")
@@ -86,7 +81,7 @@ class EditBookController: UIViewController {
     }
     
     func handleStorage() {
-        
+        print("handle storage...")
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -95,7 +90,6 @@ class EditBookController: UIViewController {
     }
     
     func handleBackButton() {
-        
         navigationController?.popViewController(animated: true)
     }
     
@@ -112,7 +106,8 @@ class EditBookController: UIViewController {
     
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(text: "画像添付", backgroundColor: .red, font: UIFont.systemFont(ofSize: 16))
+        button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
+        button.setTitle("画像添付", for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -260,4 +255,5 @@ extension EditBookController: UIImagePickerControllerDelegate, UINavigationContr
         dismiss(animated: true, completion: nil)
         print("imagePicker canceled...")
     }
+    
 }

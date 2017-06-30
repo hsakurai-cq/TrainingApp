@@ -15,12 +15,11 @@ class AddBookController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(view.frame.height)
-        
         view.backgroundColor = UIColor.white
         navigationItem.title = "書籍追加"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleStorage))
+        self.navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)
@@ -49,6 +48,7 @@ class AddBookController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
@@ -64,7 +64,7 @@ class AddBookController: UIViewController {
         if txtLimit >= kbdLimit {
             let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
             UIView.animate(withDuration: duration!, animations: { () in
-                let transform = CGAffineTransform(translationX: 0, y: -(txtLimit - kbdLimit))
+                let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
                 self.view.transform = transform
                 
                 print("テキストフィールドの下辺：(\(txtLimit))")
@@ -100,7 +100,8 @@ class AddBookController: UIViewController {
     
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(text: "画像添付", backgroundColor: .red, font: .systemFont(ofSize: 16))
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
+        button.setTitle("画像添付", for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -154,7 +155,7 @@ class AddBookController: UIViewController {
         print(view.topAnchor)
         
         registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30 + 64).isActive = true
+        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         registeredImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         

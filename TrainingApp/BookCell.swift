@@ -29,26 +29,19 @@ class BookCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Book Title"
-        label.backgroundColor = UIColor.blue
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.labelConfig(text: "PHP辞典")
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "3200円 + 税"
-        label.textAlignment = NSTextAlignment.right
-        label.backgroundColor = UIColor.brown
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.labelConfig(text: "3200円 + 税")
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "2017/06/26"
-        label.backgroundColor = UIColor.green
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.labelConfig(text: "2017/06/30")
         return label
     }()
     
