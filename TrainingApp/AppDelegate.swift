@@ -20,8 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = UINavigationController(rootViewController: LoginController())
+        let userDefault = UserDefaults.standard
+        // "firstLaunch"をキーに、Bool型の値を保持する
+        let dict = ["firstLaunch": true]
+        // デフォルト値登録
+        // ※すでに値が更新されていた場合は、更新後の値のままになる
+        userDefault.register(defaults: dict)
         
+        // "firstLaunch"に紐づく値がtrueなら(=初回起動)、値をfalseに更新して処理を行う
+        if userDefault.bool(forKey: "firstLaunch") {
+            //userDefault.set(false, forKey: "firstLaunch")
+            window?.rootViewController = UINavigationController(rootViewController: AccountConfigController())
+            
+            print("初回起動の時だけ呼ばれるよ")
+        } else {
+            window?.rootViewController = UINavigationController(rootViewController: LoginController())
+        }
+                
         return true
     }
 
