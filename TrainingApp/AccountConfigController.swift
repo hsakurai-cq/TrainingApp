@@ -1,11 +1,3 @@
-//
-//  AccountConfigController.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/28.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import UIKit
 
 class AccountConfigController: UIViewController, UITextFieldDelegate {
@@ -27,9 +19,9 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "アカウント設定"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleStorage))
+        navigationItem.title = viewConstants.accountConfigTitle
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleClose, style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleSave, style: .plain, target: self, action: #selector(handleSaveAccount))
         
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
@@ -58,18 +50,18 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func handleClose() {
+    func handleModalClose() {
         print("handle close...")
         dismiss(animated: true, completion: nil)
     }
     
-    func handleStorage() {
+    func handleSaveAccount() {
         print("handle storage...")
     }
     
     let emailConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "メールアドレス")
+        label.labelConfig(text: viewConstants.labelTitleEmail)
         return label
     }()
     
@@ -81,7 +73,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let passwordConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "パスワード")
+        label.labelConfig(text: viewConstants.labelTitlePassword)
         return label
     }()
     
@@ -93,7 +85,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let passwordCheckLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "パスワード確認")
+        label.labelConfig(text: viewConstants.labelTitleConfPass)
         return label
     }()
     

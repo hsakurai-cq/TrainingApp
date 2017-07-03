@@ -1,11 +1,3 @@
-//
-//  ConfigurationController.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/26.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import UIKit
 
 class ConfigurationController: UIViewController {
@@ -23,17 +15,17 @@ class ConfigurationController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.navigationItem.title = "設定"
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.title = viewConstants.buttonTitleConfig
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleNil, style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleNil, style: .plain, target: self, action: nil)
     }
     
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle("設定", for: UIControlState())
+        button.setTitle(viewConstants.buttonTitleConfig, for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(handleConfig), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleTapConfig), for: .touchUpInside)
         return button
     }()
     
@@ -44,7 +36,7 @@ class ConfigurationController: UIViewController {
         configureButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
-    func handleConfig() {
+    func handleTapConfig() {
         print("go to configure page...")
         let accountConfigController = AccountConfigController()
         let toConfig = UINavigationController(rootViewController: accountConfigController)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0B639F1F0A21BE003E3508 /* localizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B639E1F0A21BE003E3508 /* localizableStrings.swift */; };
 		8F330F321F036B7100091056 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F311F036B7100091056 /* EditBookController.swift */; };
 		8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F331F03C80C00091056 /* AccountConfigController.swift */; };
 		8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D0B639E1F0A21BE003E3508 /* localizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = localizableStrings.swift; sourceTree = "<group>"; };
 		8F330F311F036B7100091056 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
 		8F330F331F03C80C00091056 /* AccountConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfigController.swift; sourceTree = "<group>"; };
 		8F3D949C1F00A92600C06DA1 /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				8FBA4D631F05D3B000F00B60 /* Util.swift */,
+				5D0B639E1F0A21BE003E3508 /* localizableStrings.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */,
 				8F3D94A21F00A92600C06DA1 /* TabBarController.swift in Sources */,
 				8FBA4D641F05D3B000F00B60 /* Util.swift in Sources */,
+				5D0B639F1F0A21BE003E3508 /* localizableStrings.swift in Sources */,
 				8F3D94C01F02398100C06DA1 /* AddBookController.swift in Sources */,
 				8F3D94B61F00BAD900C06DA1 /* LoginController.swift in Sources */,
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,

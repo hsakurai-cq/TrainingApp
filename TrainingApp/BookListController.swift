@@ -1,11 +1,3 @@
-//
-//  BookListController.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/26.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import UIKit
 
 class BookListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -22,7 +14,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         bookTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100))
         
         bookTableView.rowHeight = 100
-        bookTableView.register(BookCell.self, forCellReuseIdentifier: "bookCell")
+        bookTableView.register(BookCell.self, forCellReuseIdentifier: viewConstants.bookCell)
         bookTableView.dataSource = self
         bookTableView.delegate = self
 
@@ -32,11 +24,11 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
-        self.tabBarController?.navigationItem.title = "書籍一覧"
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(handleAddButton))
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
+        //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
+        self.tabBarController?.navigationItem.title = viewConstants.bookListTitle
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleAdd, style: .plain, target: self, action: #selector(handleAddButton))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleNil, style: .plain, target: self, action: nil)
     }
     
     func handleAddButton() {
@@ -55,7 +47,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = bookTableView.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath)
+        let cell = bookTableView.dequeueReusableCell(withIdentifier: viewConstants.bookCell, for: indexPath)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
     }
@@ -68,7 +60,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     let loadMoreButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.lightGray
-        button.setTitle("もっと読み込む", for: UIControlState())
+        button.setTitle(viewConstants.buttonTitleLoadMore, for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(loadMore), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
