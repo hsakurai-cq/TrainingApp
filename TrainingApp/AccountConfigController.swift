@@ -14,10 +14,20 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefault = UserDefaults.standard
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            userDefault.set(false, forKey: "firstLaunch")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+            print("初回起動2")
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
+        }
+        
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "アカウント設定"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleStorage))
         
         view.addSubview(emailConfigLabel)
@@ -34,55 +44,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.removeObserver(self)
-    }
-    
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
-        
-        let userInfo = notification.userInfo!
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let myBoundSize: CGSize = UIScreen.main.bounds.size
-        let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
-        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
-        
-        print(txtLimit >= kbdLimit)
-        
-        if txtLimit >= kbdLimit {
-            let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
-            UIView.animate(withDuration: duration!, animations: { () in
-                let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
-                self.view.transform = transform
-                
-                print("テキストフィールドの下辺：(\(txtLimit))")
-                print("キーボードの上辺：(\(kbdLimit))")
-            })
-        }
-    }
-    
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
-        let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
-            self.view.transform = CGAffineTransform.identity
-        })
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.emailConfigTextField.isFirstResponder {
             self.emailConfigTextField.resignFirstResponder()
@@ -97,11 +58,12 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     }
     
     func handleClose() {
+        print("handle close...")
         dismiss(animated: true, completion: nil)
     }
     
     func handleStorage() {
-        
+        print("handle storage...")
     }
     
     let emailConfigLabel: UILabel = {
@@ -143,7 +105,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     func setupConfigViews() {
         
         emailConfigLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        emailConfigLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 66).isActive = true
+        emailConfigLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58).isActive = true
         emailConfigLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         emailConfigLabel.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
