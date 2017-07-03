@@ -1,11 +1,3 @@
-//
-//  ViewUtil.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/30.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -32,5 +24,12 @@ extension UIButton {
         self.backgroundColor = backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.font = font
+    }
+}
+extension Date {
+    func toString(sender: UIDatePicker) -> String {
+        let dateFormmtter = DateFormatter()
+        dateFormmtter.dateFormat = viewConstants.dateFormat
+        return dateFormmtter.string(from: sender.date)
     }
 }

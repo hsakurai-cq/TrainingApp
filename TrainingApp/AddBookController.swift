@@ -1,11 +1,3 @@
-//
-//  AddBookController.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/27.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import UIKit
 
 class AddBookController: UIViewController {
@@ -16,9 +8,9 @@ class AddBookController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
-        navigationItem.title = "書籍追加"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleStorage))
+        navigationItem.title = viewConstants.addBookTitle
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleClose, style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleSave, style: .plain, target: self, action: #selector(handleSaveBook))
         self.navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(registeredImageView)
@@ -42,16 +34,14 @@ class AddBookController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func handleKeyboardWillShowNotification(_ notification: Notification) {
@@ -79,11 +69,11 @@ class AddBookController: UIViewController {
     }
     //キーボード処理終了
     
-    func handleClose() {
+    func handleModalClose() {
         dismiss(animated: true, completion: nil)
     }
     
-    func handleStorage() {
+    func handleSaveBook() {
         print("handle storage...")
     }
     
@@ -97,7 +87,7 @@ class AddBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle("画像添付", for: UIControlState())
+        button.setTitle(viewConstants.buttonTitleSetImage, for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -105,7 +95,7 @@ class AddBookController: UIViewController {
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "書籍")
+        label.labelConfig(text: viewConstants.labelTitleBook)
         return label
     }()
     
@@ -117,7 +107,7 @@ class AddBookController: UIViewController {
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "金額")
+        label.labelConfig(text: viewConstants.labelTitlePrice)
         return label
     }()
     
@@ -129,7 +119,7 @@ class AddBookController: UIViewController {
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "購入日")
+        label.labelConfig(text: viewConstants.labelTitlePurchaseDate)
         return label
     }()
     
@@ -196,9 +186,7 @@ class AddBookController: UIViewController {
 extension AddBookController: UITextFieldDelegate {
    
     func changedDateEvent(sender: UIDatePicker) {
-        let dateFormmtter = DateFormatter()
-        dateFormmtter.dateFormat = "yyyy/MM/dd"
-        purchaseDateField.text = dateFormmtter.string(from: sender.date)
+        purchaseDateField.text = Date().toString(sender: sender)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -234,9 +222,7 @@ extension AddBookController: UIImagePickerControllerDelegate, UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var selectedImageFromPicker: UIImage?
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+        if let originalImage = info[viewConstants.InfoOfImagePicker] as? UIImage {
             selectedImageFromPicker = originalImage
         }
         if let selectedImage = selectedImageFromPicker {

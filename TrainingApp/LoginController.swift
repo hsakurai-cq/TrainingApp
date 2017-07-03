@@ -1,11 +1,3 @@
-//
-//  LoginController.swift
-//  TrainingApp
-//
-//  Created by 櫻井寛海 on 2017/06/26.
-//  Copyright © 2017年 櫻井寛海. All rights reserved.
-//
-
 import UIKit
 
 class LoginController: UIViewController, UITextFieldDelegate {
@@ -13,7 +5,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "書籍一覧"
+        navigationItem.title = viewConstants.bookListTitle
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.white
         
@@ -31,7 +23,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let emailLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "メールアドレス")
+        label.labelConfig(text: viewConstants.labelTitleEmail)
         return label
     }()
     
@@ -43,7 +35,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let passwordLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "パスワード")
+        label.labelConfig(text: viewConstants.labelTitlePassword)
         return label
     }()
     
@@ -56,7 +48,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle("Login", for: UIControlState())
+        button.setTitle(viewConstants.buttonTitleLogin, for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
