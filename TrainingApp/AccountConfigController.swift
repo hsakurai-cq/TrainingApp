@@ -14,20 +14,21 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let userDefault = UserDefaults.standard
-        let dict = ["firstLaunch": true]
-        userDefault.register(defaults: dict)
-        if userDefault.bool(forKey: "firstLaunch") {
-            userDefault.set(false, forKey: "firstLaunch")
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-            print("初回起動2")
-        } else {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
-        }
+//        let userDefault = UserDefaults.standard
+//        let dict = ["firstLaunch": true]
+//        userDefault.register(defaults: dict)
+//        if userDefault.bool(forKey: "firstLaunch") {
+//            userDefault.set(false, forKey: "firstLaunch")
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+//            print("初回起動2")
+//        } else {
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
+//        }
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "アカウント設定"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(handleStorage))
         
         view.addSubview(emailConfigLabel)
