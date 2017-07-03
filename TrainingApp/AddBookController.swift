@@ -8,9 +8,9 @@ class AddBookController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
-        navigationItem.title = viewConstants.addBookTitle
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleClose, style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleSave, style: .plain, target: self, action: #selector(handleSaveBook))
+        navigationItem.title = NSLocalizedString("addBookTitle", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleClose", comment: ""), style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleSave", comment: ""), style: .plain, target: self, action: #selector(handleSaveBook))
         self.navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(registeredImageView)
@@ -87,7 +87,7 @@ class AddBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle(viewConstants.buttonTitleSetImage, for: UIControlState())
+        button.setTitle(NSLocalizedString("buttonTitleSetImage", comment: ""), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -95,7 +95,7 @@ class AddBookController: UIViewController {
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitleBook)
+        label.labelConfig(text: NSLocalizedString("labelTitleBook", comment: ""))
         return label
     }()
     
@@ -107,7 +107,7 @@ class AddBookController: UIViewController {
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitlePrice)
+        label.labelConfig(text: NSLocalizedString("labelTitlePrice", comment: ""))
         return label
     }()
     
@@ -119,7 +119,7 @@ class AddBookController: UIViewController {
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitlePurchaseDate)
+        label.labelConfig(text: NSLocalizedString("labelTitlePurchaseDate", comment: ""))
         return label
     }()
     
@@ -172,7 +172,7 @@ class AddBookController: UIViewController {
         
         purchaseDateLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
         purchaseDateLabel.topAnchor.constraint(equalTo: bookPriceTextField.bottomAnchor, constant: 30).isActive = true
-        purchaseDateLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        purchaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         purchaseDateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         purchaseDateField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
