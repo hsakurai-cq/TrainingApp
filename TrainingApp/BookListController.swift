@@ -26,9 +26,9 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         
         //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
-        self.tabBarController?.navigationItem.title = viewConstants.bookListTitle
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleAdd, style: .plain, target: self, action: #selector(handleAddButton))
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleNil, style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.title = NSLocalizedString("bookListTitle", comment: "")
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleAdd", comment: ""), style: .plain, target: self, action: #selector(handleAddButton))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleNil", comment: ""), style: .plain, target: self, action: nil)
     }
     
     func handleAddButton() {
@@ -60,7 +60,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     let loadMoreButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.lightGray
-        button.setTitle(viewConstants.buttonTitleLoadMore, for: UIControlState())
+        button.setTitle(NSLocalizedString("buttonTitleLoadMore", comment: ""), for: UIControlState())
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(loadMore), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

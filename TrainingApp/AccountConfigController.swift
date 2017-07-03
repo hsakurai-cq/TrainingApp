@@ -19,9 +19,9 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = viewConstants.accountConfigTitle
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleClose, style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: viewConstants.buttonTitleSave, style: .plain, target: self, action: #selector(handleSaveAccount))
+        navigationItem.title = NSLocalizedString("accountConfigTitle", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleClose", comment: ""), style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleSave", comment: ""), style: .plain, target: self, action: #selector(handleSaveAccount))
         
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
@@ -61,7 +61,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let emailConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitleEmail)
+        label.labelConfig(text: NSLocalizedString("labelTitleEmail", comment: ""))
         return label
     }()
     
@@ -73,7 +73,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let passwordConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitlePassword)
+        label.labelConfig(text: NSLocalizedString("labelTitlePassword", comment: ""))
         return label
     }()
     
@@ -85,7 +85,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let passwordCheckLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: viewConstants.labelTitleConfPass)
+        label.labelConfig(text: NSLocalizedString("labelTitleConfPass", comment: ""))
         return label
     }()
     

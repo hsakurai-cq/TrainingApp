@@ -1,0 +1,20 @@
+"bookListTitle" = "書籍一覧";
+"addBookTitle" = "書籍追加";
+"accountConfigTitle" = "アカウント設定";
+"editBookTitle" = "書籍編集";
+"buttonTitleAdd" = "追加";
+"buttonTitleSave" = "保存";
+"buttonTitleClose" = "閉じる";
+"buttonTitleBack" = "戻る";
+"buttonTitleNil" = "";
+"buttonTitleLoadMore" = "もっと読み込む";
+"buttonTitleConfig" = "設定";
+"buttonTitleSetImage" = "画像添付";
+"buttonTitleLogin" = "ログイン";
+
+"labelTitleEmail" = "メールアドレス";
+"labelTitlePassword" = "パスワード";
+"labelTitleConfPass" = "パスワード確認";
+"labelTitleBook" = "書籍";
+"labelTitlePrice" = "金額";
+"labelTitlePurchaseDate" = "購入日";
