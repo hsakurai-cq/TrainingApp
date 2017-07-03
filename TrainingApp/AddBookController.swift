@@ -38,6 +38,7 @@ class AddBookController: UIViewController {
         purchaseDateField.inputView = datePicker
     }
     
+    //ここからキーボードの高さ変更処理
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -66,10 +67,6 @@ class AddBookController: UIViewController {
             UIView.animate(withDuration: duration!, animations: { () in
                 let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
                 self.view.transform = transform
-                
-                print("テキストフィールドの下辺：(\(txtLimit))")
-                print("キーボードの上辺：(\(kbdLimit))")
-                print("myBoundSize.height\(myBoundSize.height)")
             })
         }
     }
@@ -80,6 +77,7 @@ class AddBookController: UIViewController {
             self.view.transform = CGAffineTransform.identity
         })
     }
+    //キーボード処理終了
     
     func handleClose() {
         dismiss(animated: true, completion: nil)
