@@ -1,4 +1,10 @@
 disabled_rules:
+- identifier_name
+- generic_type_name
+- opening_brace
+- line_length
+- notification_center_detachment
+- nesting
 - trailing_whitespace
 - type_name
 - force_cast
