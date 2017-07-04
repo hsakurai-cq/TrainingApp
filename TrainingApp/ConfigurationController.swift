@@ -15,15 +15,15 @@ class ConfigurationController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.navigationItem.title = NSLocalizedString("buttonTitleConfig", comment: "")
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleNil", comment: ""), style: .plain, target: self, action: nil)
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleNil", comment: ""), style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.title = R.string.localizable.buttonTitleConfig()
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
     }
     
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(NSLocalizedString("buttonTitleConfig", comment: ""), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleConfig(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(handleTapConfig), for: .touchUpInside)
         return button

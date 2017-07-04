@@ -34,9 +34,9 @@ struct R: Rswift.Validatable {
   /// This `R.image` struct is generated, and contains static references to 2 images.
   struct image {
     /// Image `book_icon`.
-    static let book_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "book_icon")
+    static let book_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: Constants.tabBarImageBook)
     /// Image `user_icon`.
-    static let user_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "user_icon")
+    static let user_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: Constants.tabBarImageUser)
     
     /// `UIImage(named: "book_icon", bundle: ..., traitCollection: ...)`
     static func book_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -66,13 +66,15 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 0 storyboards.
-  struct storyboard {
-    fileprivate init() {}
-  }
+  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
   
-  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
   struct string {
+    /// This `R.string.launchScreen` struct is generated, and contains static references to 0 localization keys.
+    struct launchScreen {
+      fileprivate init() {}
+    }
+    
     /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
     struct localizable {
       /// Base translation: 
@@ -288,6 +290,11 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    /// This `R.string.main` struct is generated, and contains static references to 0 localization keys.
+    struct main {
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -306,10 +313,6 @@ struct R: Rswift.Validatable {
 
 struct _R {
   struct nib {
-    fileprivate init() {}
-  }
-  
-  struct storyboard {
     fileprivate init() {}
   }
   

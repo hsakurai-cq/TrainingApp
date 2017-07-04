@@ -7,13 +7,13 @@ class TabBarController: UITabBarController {
         
         let bookListController = BookListController()
         let navigationController = UINavigationController(rootViewController: bookListController)
-        bookListController.title = NSLocalizedString("bookListTitle", comment: "")
-        navigationController.tabBarItem.image = UIImage(named: Constants.tabBarImageBook)
+        bookListController.title = R.string.localizable.bookListTitle()
+        navigationController.tabBarItem.image = R.image.book_icon()
         
         let configurationController = ConfigurationController()
         let secondNavigationController = UINavigationController(rootViewController: configurationController)
-        configurationController.title = NSLocalizedString("buttonTitleConfig", comment: "")
-        secondNavigationController.tabBarItem.image = UIImage(named: Constants.tabBarImageUser)
+        configurationController.title = R.string.localizable.buttonTitleConfig()
+        secondNavigationController.tabBarItem.image = R.image.user_icon()
         
         viewControllers = [navigationController, secondNavigationController]
     }

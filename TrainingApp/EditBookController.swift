@@ -29,9 +29,9 @@ class EditBookController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tabBarController?.navigationItem.title = NSLocalizedString("editBookTitle", comment: "")
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleBack", comment: ""), style: .plain, target: self, action: #selector(handleBackButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleSave", comment: ""), style: .plain, target: self, action: #selector(handleResaveBook))
+        self.tabBarController?.navigationItem.title = R.string.localizable.editBookTitle()
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(handleBackButton))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleResaveBook))
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -66,10 +66,6 @@ class EditBookController: UIViewController {
         })
     }
     
-    func handleStorage() {
-        print("handle storage...")
-    }
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         txtActiveField = textField
         return true
@@ -93,7 +89,7 @@ class EditBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(NSLocalizedString("buttonTitleSetImage", comment: ""), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -101,7 +97,7 @@ class EditBookController: UIViewController {
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitleBook", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitleBook())
         return label
     }()
     
@@ -113,7 +109,7 @@ class EditBookController: UIViewController {
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePrice", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePrice())
         return label
     }()
     
@@ -125,7 +121,7 @@ class EditBookController: UIViewController {
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePrice", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
         return label
     }()
     
