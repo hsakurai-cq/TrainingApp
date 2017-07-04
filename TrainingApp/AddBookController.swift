@@ -74,7 +74,7 @@ class AddBookController: UIViewController {
     }
     
     func handleSaveBook() {
-        print("handle save book...")
+        print("save book...")
     }
     
     let registeredImageView: UIImageView = {
