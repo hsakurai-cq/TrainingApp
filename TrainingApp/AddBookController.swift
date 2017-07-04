@@ -8,9 +8,9 @@ class AddBookController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
-        navigationItem.title = NSLocalizedString("addBookTitle", comment: "")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleClose", comment: ""), style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleSave", comment: ""), style: .plain, target: self, action: #selector(handleSaveBook))
+        navigationItem.title = R.string.localizable.addBookTitle()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleSaveBook))
         self.navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(registeredImageView)
@@ -74,7 +74,7 @@ class AddBookController: UIViewController {
     }
     
     func handleSaveBook() {
-        print("handle storage...")
+        print("handle save book...")
     }
     
     let registeredImageView: UIImageView = {
@@ -87,7 +87,7 @@ class AddBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle(NSLocalizedString("buttonTitleSetImage", comment: ""), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -95,7 +95,7 @@ class AddBookController: UIViewController {
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitleBook", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitleBook())
         return label
     }()
     
@@ -107,7 +107,7 @@ class AddBookController: UIViewController {
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePrice", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePrice())
         return label
     }()
     
@@ -119,7 +119,7 @@ class AddBookController: UIViewController {
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePurchaseDate", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
         return label
     }()
     

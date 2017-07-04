@@ -19,9 +19,9 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = NSLocalizedString("accountConfigTitle", comment: "")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleClose", comment: ""), style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("buttonTitleSave", comment: ""), style: .plain, target: self, action: #selector(handleSaveAccount))
+        navigationItem.title = R.string.localizable.accountConfigTitle()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(handleModalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleSaveAccount))
         
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
@@ -56,12 +56,12 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     }
     
     func handleSaveAccount() {
-        print("handle storage...")
+        print("handle save account...")
     }
     
     let emailConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitleEmail", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitleEmail())
         return label
     }()
     
@@ -73,25 +73,27 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     
     let passwordConfigLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePassword", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePassword())
         return label
     }()
     
     let passwordConfigTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.isSecureTextEntry = true
         return tf
     }()
     
     let passwordCheckLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitleConfPass", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitleConfPass())
         return label
     }()
     
     let passwordCheckTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.isSecureTextEntry = true
         return tf
     }()
     

@@ -5,7 +5,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("bookListTitle", comment: "")
+        navigationItem.title = R.string.localizable.bookListTitle()
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.white
         
@@ -23,7 +23,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let emailLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitleEmail", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitleEmail())
         return label
     }()
     
@@ -35,20 +35,21 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     let passwordLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: NSLocalizedString("labelTitlePassword", comment: ""))
+        label.labelConfig(text: R.string.localizable.labelTitlePassword())
         return label
     }()
     
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.isSecureTextEntry = true
         return tf
     }()
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(NSLocalizedString("buttonTitleLogin", comment: ""), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleLogin(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
