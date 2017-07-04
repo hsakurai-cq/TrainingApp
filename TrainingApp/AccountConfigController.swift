@@ -51,12 +51,12 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     }
     
     func handleModalClose() {
-        print("handle close...")
+        print("close...")
         dismiss(animated: true, completion: nil)
     }
     
     func handleSaveAccount() {
-        print("handle save account...")
+        print("save account...")
     }
     
     let emailConfigLabel: UILabel = {
