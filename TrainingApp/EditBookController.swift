@@ -222,7 +222,7 @@ extension EditBookController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var selectedImageFromPicker: UIImage?
-        if let originalImage = info[viewConstants.InfoOfImagePicker] as? UIImage {
+        if let originalImage = info[Constants.InfoOfImagePicker] as? UIImage {
             selectedImageFromPicker = originalImage
         }
         if let selectedImage = selectedImageFromPicker {

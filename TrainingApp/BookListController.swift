@@ -14,7 +14,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         bookTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100))
         
         bookTableView.rowHeight = 100
-        bookTableView.register(BookCell.self, forCellReuseIdentifier: viewConstants.bookCell)
+        bookTableView.register(BookCell.self, forCellReuseIdentifier: Constants.bookCell)
         bookTableView.dataSource = self
         bookTableView.delegate = self
 
@@ -47,7 +47,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = bookTableView.dequeueReusableCell(withIdentifier: viewConstants.bookCell, for: indexPath)
+        let cell = bookTableView.dequeueReusableCell(withIdentifier: Constants.bookCell, for: indexPath)
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
     }

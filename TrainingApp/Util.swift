@@ -29,7 +29,7 @@ extension UIButton {
 extension Date {
     func toString(sender: UIDatePicker) -> String {
         let dateFormmtter = DateFormatter()
-        dateFormmtter.dateFormat = viewConstants.dateFormat
+        dateFormmtter.dateFormat = Constants.dateFormat
         return dateFormmtter.string(from: sender.date)
     }
 }
