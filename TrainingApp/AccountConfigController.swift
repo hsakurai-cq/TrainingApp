@@ -11,10 +11,10 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
 //        userDefault.register(defaults: dict)
 //        if userDefault.bool(forKey: "firstLaunch") {
 //            userDefault.set(false, forKey: "firstLaunch")
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-//            print("初回起動2")
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+//            print("初回起動(アカウント設定画面)")
 //        } else {
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(handleClose))
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(modalClose))
 //        }
         
         view.backgroundColor = .white
@@ -23,12 +23,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveAccount))
         
-        view.addSubview(emailConfigLabel)
-        view.addSubview(emailConfigTextField)
-        view.addSubview(passwordConfigLabel)
-        view.addSubview(passwordConfigTextField)
-        view.addSubview(passwordCheckLabel)
-        view.addSubview(passwordCheckTextField)
         setupConfigViews()
         
         emailConfigTextField.delegate = self
@@ -56,6 +50,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
     }
     
     func saveAccount() {
+        //Todo 保存処理実装
         print("save account...")
     }
     
@@ -96,8 +91,17 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         tf.isSecureTextEntry = true
         return tf
     }()
-    
+}
+
+//Anchor設定
+extension AccountConfigController {
     func setupConfigViews() {
+        view.addSubview(emailConfigLabel)
+        view.addSubview(emailConfigTextField)
+        view.addSubview(passwordConfigLabel)
+        view.addSubview(passwordConfigTextField)
+        view.addSubview(passwordCheckLabel)
+        view.addSubview(passwordCheckTextField)
         
         emailConfigLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         emailConfigLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58).isActive = true
@@ -129,5 +133,4 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         passwordCheckTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
         passwordCheckTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
 }

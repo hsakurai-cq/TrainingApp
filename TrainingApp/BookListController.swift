@@ -1,8 +1,8 @@
 import UIKit
 
-class BookListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BookListController: UIViewController {
     
-    private var bookTableView: UITableView!
+    var bookTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         bookTableView.delegate = self
 
         view.addSubview(bookTableView)
-        view.addSubview(loadMoreButton)
+        
         setupLoadMoreButton()
     }
     
@@ -37,6 +37,23 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         present(toAddBook, animated: true, completion: nil)
     }
     
+    let loadMoreButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(loadMore), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    func loadMore() {
+        //Todo 読み込み処理
+    }
+
+}
+
+extension BookListController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -56,26 +73,15 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         let editBookController = EditBookController()
         navigationController?.pushViewController(editBookController, animated: true)
     }
-    
-    let loadMoreButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.lightGray
-        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(loadMore), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    func loadMore() {
-        //Todo 読み込み処理
-    }
-    
+}
+
+//Anchor設定
+extension BookListController {
     func setupLoadMoreButton() {
+        view.addSubview(loadMoreButton)
         loadMoreButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         loadMoreButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         loadMoreButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         loadMoreButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
-        
 }

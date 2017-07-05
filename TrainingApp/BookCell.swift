@@ -37,8 +37,10 @@ class BookCell: UITableViewCell {
         return label
     }()
     
+}
+
+extension BookCell {
     func setupCellViews() {
-        
         contentView.addSubview(bookImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
@@ -63,6 +65,5 @@ class BookCell: UITableViewCell {
         dateLabel.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor).isActive = true
         dateLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor).isActive = true
         dateLabel.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: 10).isActive = true
-        
     }
 }

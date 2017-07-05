@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            userDefault.set(false, forKey: "firstLaunch")
 //            window?.rootViewController = UINavigationController(rootViewController: AccountConfigController())
 //            
-//            print("初回起動の時だけ呼ばれるよ")
+//            print("初回起動")
 //        } else {
 //            window?.rootViewController = UINavigationController(rootViewController: LoginController())
 //        }

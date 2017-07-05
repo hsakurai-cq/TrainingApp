@@ -1,6 +1,6 @@
 import UIKit
 
-class LoginController: UIViewController, UITextFieldDelegate {
+class LoginController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,13 +12,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         
-        view.addSubview(emailLabel)
-        view.addSubview(emailTextField)
-        view.addSubview(passwordLabel)
-        view.addSubview(passwordTextField)
-        view.addSubview(loginButton)
         setupLoginViews()
-        
     }
     
     let emailLabel: UILabel = {
@@ -61,6 +55,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         present(navController, animated: true, completion: nil)
     }
     
+}
+
+extension LoginController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -73,10 +70,17 @@ class LoginController: UIViewController, UITextFieldDelegate {
         if self.passwordTextField.isFirstResponder {
             self.passwordTextField.resignFirstResponder()
         }
-        
     }
-    
+}
+
+//Anchor設定
+extension LoginController {
     func setupLoginViews() {
+        view.addSubview(emailLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordLabel)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
         
         emailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         emailLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 94).isActive = true
@@ -103,5 +107,5 @@ class LoginController: UIViewController, UITextFieldDelegate {
         loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 54).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 59).isActive = true
     }
-    
+
 }
