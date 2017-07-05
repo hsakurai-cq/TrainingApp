@@ -10,7 +10,6 @@ class ConfigurationController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.white
         
-        view.addSubview(configureButton)
         setupConfigureButton()
     }
     
@@ -29,17 +28,20 @@ class ConfigurationController: UIViewController {
         return button
     }()
     
-    func setupConfigureButton() {
-        configureButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        configureButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        configureButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        configureButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-    }
-    
     func tappedConfigButton() {
         print("go to configure page...")
         let accountConfigController = AccountConfigController()
         let toConfig = UINavigationController(rootViewController: accountConfigController)
         present(toConfig, animated: true, completion: nil)
+    }
+}
+
+extension ConfigurationController {
+    func setupConfigureButton() {
+        view.addSubview(configureButton)
+        configureButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        configureButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        configureButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        configureButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 }

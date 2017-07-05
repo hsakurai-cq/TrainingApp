@@ -8,21 +8,13 @@ class EditBookController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
         
-        view.addSubview(registeredImageView)
-        view.addSubview(registerImageButton)
-        view.addSubview(bookNameLabel)
-        view.addSubview(bookNameTextField)
-        view.addSubview(bookPriceLabel)
-        view.addSubview(bookPriceTextField)
-        view.addSubview(purchaseDateLabel)
-        view.addSubview(purchaseDateField)
         setupEditBookViews()
         
         bookNameTextField.delegate = self
         bookPriceTextField.delegate = self
         purchaseDateField.delegate = self
-        
         purchaseDateField.inputView = datePicker
     }
     
@@ -79,6 +71,7 @@ class EditBookController: UIViewController {
         print("Edit Finished...")
     }
     
+    //UI部品設定
     let registeredImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -137,9 +130,69 @@ class EditBookController: UIViewController {
         picker.datePickerMode = UIDatePickerMode.date
         return picker
     }()
+}
+
+extension EditBookController: UITextFieldDelegate {
     
-    func setupEditBookViews() {
-            
+    func changedDateEvent(sender: UIDatePicker) {
+        purchaseDateField.text = Date().toString(sender: sender)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.bookNameTextField.isFirstResponder {
+            self.bookNameTextField.resignFirstResponder()
+        }
+        if self.bookPriceTextField.isFirstResponder {
+            self.bookPriceTextField.resignFirstResponder()
+        }
+        if self.purchaseDateField.isFirstResponder {
+            self.purchaseDateField.resignFirstResponder()
+        }
+    }
+}
+
+extension EditBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func registerImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let originalImage = info[Constants.InfoOfImagePicker] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        if let selectedImage = selectedImageFromPicker {
+            registeredImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        print("imagePicker canceled...")
+    }
+    
+}
+
+//Anchor設定
+extension EditBookController {
+        func setupEditBookViews() {
+        view.addSubview(registeredImageView)
+        view.addSubview(registerImageButton)
+        view.addSubview(bookNameLabel)
+        view.addSubview(bookNameTextField)
+        view.addSubview(bookPriceLabel)
+        view.addSubview(bookPriceTextField)
+        view.addSubview(purchaseDateLabel)
+        view.addSubview(purchaseDateField)
+        
         registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -180,56 +233,4 @@ class EditBookController: UIViewController {
         purchaseDateField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
         purchaseDateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-
-}
-
-extension EditBookController: UITextFieldDelegate {
-    
-    func changedDateEvent(sender: UIDatePicker) {
-        purchaseDateField.text = Date().toString(sender: sender)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.bookNameTextField.isFirstResponder {
-            self.bookNameTextField.resignFirstResponder()
-        }
-        if self.bookPriceTextField.isFirstResponder {
-            self.bookPriceTextField.resignFirstResponder()
-        }
-        if self.purchaseDateField.isFirstResponder {
-            self.purchaseDateField.resignFirstResponder()
-        }
-        
-    }
-
-}
-
-extension EditBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func registerImage() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var selectedImageFromPicker: UIImage?
-        if let originalImage = info[Constants.InfoOfImagePicker] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        if let selectedImage = selectedImageFromPicker {
-            registeredImageView.image = selectedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-        print("imagePicker canceled...")
-    }
-    
 }

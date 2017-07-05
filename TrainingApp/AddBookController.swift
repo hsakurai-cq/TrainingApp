@@ -11,22 +11,13 @@ class AddBookController: UIViewController {
         navigationItem.title = R.string.localizable.addBookTitle()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveBook))
-        self.navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = false
         
-        view.addSubview(registeredImageView)
-        view.addSubview(registerImageButton)
-        view.addSubview(bookNameLabel)
-        view.addSubview(bookNameTextField)
-        view.addSubview(bookPriceLabel)
-        view.addSubview(bookPriceTextField)
-        view.addSubview(purchaseDateLabel)
-        view.addSubview(purchaseDateField)
         setupAddBookViews()
         
         bookNameTextField.delegate = self
         bookPriceTextField.delegate = self
         purchaseDateField.delegate = self
-        
         purchaseDateField.inputView = datePicker
     }
     
@@ -67,7 +58,7 @@ class AddBookController: UIViewController {
             self.view.transform = CGAffineTransform.identity
         })
     }
-    //キーボード処理終了
+    //キーボードの高さ処理終了
     
     func modalClose() {
         dismiss(animated: true, completion: nil)
@@ -77,13 +68,13 @@ class AddBookController: UIViewController {
         print("save book...")
     }
     
+    //UI部品設定
     let registeredImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
     }()
-    
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
@@ -92,95 +83,42 @@ class AddBookController: UIViewController {
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
     }()
-    
     let bookNameLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleBook())
         return label
     }()
-    
     let bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
-    
     let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePrice())
         return label
     }()
-    
     let bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
-    
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
         return label
     }()
-    
     let purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
-    
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
         picker.datePickerMode = UIDatePickerMode.date
         return picker
     }()
-    
-    func setupAddBookViews() {
-        
-        print(view.topAnchor)
-        
-        registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
-        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        registeredImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        registerImageButton.leftAnchor.constraint(equalTo: registeredImageView.rightAnchor, constant: 30).isActive = true
-        registerImageButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        registerImageButton.centerYAnchor.constraint(equalTo: registeredImageView.centerYAnchor).isActive = true
-        registerImageButton.heightAnchor.constraint(equalTo: registeredImageView.heightAnchor, multiplier: 2/5).isActive = true
-        
-        bookNameLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        bookNameLabel.topAnchor.constraint(equalTo: registeredImageView.bottomAnchor, constant: 30).isActive = true
-        bookNameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        bookNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        bookNameTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        bookNameTextField.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 2).isActive = true
-        bookNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        bookNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        bookPriceLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        bookPriceLabel.topAnchor.constraint(equalTo: bookNameTextField.bottomAnchor, constant: 30).isActive = true
-        bookPriceLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        bookPriceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        bookPriceTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        bookPriceTextField.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: 2).isActive = true
-        bookPriceTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        bookPriceTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        purchaseDateLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        purchaseDateLabel.topAnchor.constraint(equalTo: bookPriceTextField.bottomAnchor, constant: 30).isActive = true
-        purchaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        purchaseDateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        purchaseDateField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
-        purchaseDateField.topAnchor.constraint(equalTo: purchaseDateLabel.bottomAnchor, constant: 2).isActive = true
-        purchaseDateField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
-        purchaseDateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-
 }
 
 extension AddBookController: UITextFieldDelegate {
@@ -234,5 +172,59 @@ extension AddBookController: UIImagePickerControllerDelegate, UINavigationContro
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
         print("imagePicker canceled...")
+    }
+}
+
+//Ancho設定
+extension AddBookController {
+    func setupAddBookViews() {
+        view.addSubview(registeredImageView)
+        view.addSubview(registerImageButton)
+        view.addSubview(bookNameLabel)
+        view.addSubview(bookNameTextField)
+        view.addSubview(bookPriceLabel)
+        view.addSubview(bookPriceTextField)
+        view.addSubview(purchaseDateLabel)
+        view.addSubview(purchaseDateField)
+        
+        registeredImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
+        registeredImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        registeredImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        registeredImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        registerImageButton.leftAnchor.constraint(equalTo: registeredImageView.rightAnchor, constant: 30).isActive = true
+        registerImageButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        registerImageButton.centerYAnchor.constraint(equalTo: registeredImageView.centerYAnchor).isActive = true
+        registerImageButton.heightAnchor.constraint(equalTo: registeredImageView.heightAnchor, multiplier: 2/5).isActive = true
+        
+        bookNameLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookNameLabel.topAnchor.constraint(equalTo: registeredImageView.bottomAnchor, constant: 30).isActive = true
+        bookNameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bookNameLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        bookNameTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookNameTextField.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 2).isActive = true
+        bookNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        bookNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        bookPriceLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookPriceLabel.topAnchor.constraint(equalTo: bookNameTextField.bottomAnchor, constant: 30).isActive = true
+        bookPriceLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        bookPriceLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        bookPriceTextField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        bookPriceTextField.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: 2).isActive = true
+        bookPriceTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        bookPriceTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        purchaseDateLabel.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        purchaseDateLabel.topAnchor.constraint(equalTo: bookPriceTextField.bottomAnchor, constant: 30).isActive = true
+        purchaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        purchaseDateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        purchaseDateField.leftAnchor.constraint(equalTo: registeredImageView.leftAnchor).isActive = true
+        purchaseDateField.topAnchor.constraint(equalTo: purchaseDateLabel.bottomAnchor, constant: 2).isActive = true
+        purchaseDateField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30).isActive = true
+        purchaseDateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
