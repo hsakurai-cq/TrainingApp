@@ -30,11 +30,11 @@ class EditBookController: UIViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.navigationItem.title = R.string.localizable.editBookTitle()
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(handleBackButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleResaveBook))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(backButton))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(editBook))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,7 +42,7 @@ class EditBookController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
+    func keyboardWillShowNotification(_ notification: Notification) {
         
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -59,7 +59,7 @@ class EditBookController: UIViewController {
         }
     }
     
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
+    func keyboardWillHideNotification(_ notification: Notification) {
         let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
             self.view.transform = CGAffineTransform.identity
@@ -71,11 +71,11 @@ class EditBookController: UIViewController {
         return true
     }
     
-    func handleBackButton() {
+    func backButton() {
         navigationController?.popViewController(animated: true)
     }
     
-    func handleResaveBook() {
+    func editBook() {
         print("Edit Finished...")
     }
     

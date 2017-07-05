@@ -20,8 +20,8 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = R.string.localizable.accountConfigTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleSaveAccount))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveAccount))
         
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
@@ -50,12 +50,12 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func handleModalClose() {
+    func modalClose() {
         print("close...")
         dismiss(animated: true, completion: nil)
     }
     
-    func handleSaveAccount() {
+    func saveAccount() {
         print("save account...")
     }
     

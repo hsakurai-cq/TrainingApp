@@ -9,8 +9,8 @@ class AddBookController: UIViewController {
         
         view.backgroundColor = UIColor.white
         navigationItem.title = R.string.localizable.addBookTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(handleModalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(handleSaveBook))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveBook))
         self.navigationController?.navigationBar.isTranslucent = false
         
         view.addSubview(registeredImageView)
@@ -34,8 +34,8 @@ class AddBookController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,7 +44,7 @@ class AddBookController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func handleKeyboardWillShowNotification(_ notification: Notification) {
+    func keyboardWillShowNotification(_ notification: Notification) {
         
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -61,7 +61,7 @@ class AddBookController: UIViewController {
         }
     }
     
-    func handleKeyboardWillHideNotification(_ notification: Notification) {
+    func keyboardWillHideNotification(_ notification: Notification) {
         let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
             self.view.transform = CGAffineTransform.identity
@@ -69,11 +69,11 @@ class AddBookController: UIViewController {
     }
     //キーボード処理終了
     
-    func handleModalClose() {
+    func modalClose() {
         dismiss(animated: true, completion: nil)
     }
     
-    func handleSaveBook() {
+    func saveBook() {
         print("save book...")
     }
     
