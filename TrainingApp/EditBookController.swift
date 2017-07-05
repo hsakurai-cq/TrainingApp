@@ -3,20 +3,6 @@ import UIKit
 class EditBookController: UIViewController {
     
     var txtActiveField = UITextField()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.white
-        navigationController?.navigationBar.isTranslucent = false
-        
-        setupEditBookViews()
-        
-        bookNameTextField.delegate = self
-        bookPriceTextField.delegate = self
-        purchaseDateField.delegate = self
-        purchaseDateField.inputView = datePicker
-    }
     
     //UI部品設定
     let registeredImageView: UIImageView = {
@@ -78,6 +64,20 @@ class EditBookController: UIViewController {
         picker.datePickerMode = UIDatePickerMode.date
         return picker
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
+        
+        setupEditBookViews()
+        
+        bookNameTextField.delegate = self
+        bookPriceTextField.delegate = self
+        purchaseDateField.delegate = self
+        purchaseDateField.inputView = datePicker
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

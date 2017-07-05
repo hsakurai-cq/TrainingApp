@@ -1,35 +1,8 @@
 import UIKit
 
 class AccountConfigController: UIViewController, UITextFieldDelegate {
+    
     var txtActiveField = UITextField()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        let userDefault = UserDefaults.standard
-//        let dict = ["firstLaunch": true]
-//        userDefault.register(defaults: dict)
-//        if userDefault.bool(forKey: "firstLaunch") {
-//            userDefault.set(false, forKey: "firstLaunch")
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-//            print("初回起動(アカウント設定画面)")
-//        } else {
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(modalClose))
-//        }
-        
-        view.backgroundColor = .white
-        self.navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = R.string.localizable.accountConfigTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveAccount))
-        
-        setupConfigViews()
-        
-        emailConfigTextField.delegate = self
-        passwordConfigTextField.delegate = self
-        passwordCheckTextField.delegate = self
-        
-    }
     
     //UI部品設定
     let emailConfigLabel: UILabel = {
@@ -69,6 +42,34 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         tf.isSecureTextEntry = true
         return tf
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        let userDefault = UserDefaults.standard
+//        let dict = ["firstLaunch": true]
+//        userDefault.register(defaults: dict)
+//        if userDefault.bool(forKey: "firstLaunch") {
+//            userDefault.set(false, forKey: "firstLaunch")
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+//            print("初回起動(アカウント設定画面)")
+//        } else {
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(modalClose))
+//        }
+        
+        view.backgroundColor = .white
+        self.navigationController?.navigationBar.isTranslucent = false
+        navigationItem.title = R.string.localizable.accountConfigTitle()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
+        
+        setupConfigViews()
+        
+        emailConfigTextField.delegate = self
+        passwordConfigTextField.delegate = self
+        passwordCheckTextField.delegate = self
+        
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.emailConfigTextField.isFirstResponder {
@@ -83,12 +84,11 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func modalClose() {
-        print("close...")
+    func tappedCloseButton() {
         dismiss(animated: true, completion: nil)
     }
     
-    func saveAccount() {
+    func tappedSaveButton() {
         //Todo 保存処理実装
         print("save account...")
     }
