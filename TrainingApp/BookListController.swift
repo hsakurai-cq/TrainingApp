@@ -44,6 +44,7 @@ class BookListController: UIViewController {
         let addBookController = AddBookController()
         let toAddBook = UINavigationController(rootViewController: addBookController)
         present(toAddBook, animated: true, completion: nil)
+        print("tapped add button")
     }
     
     func tappedLoadMoreButton() {

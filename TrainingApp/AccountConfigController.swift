@@ -92,7 +92,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         //Todo 保存処理実装
         print("save account...")
     }
-    
 }
 
 //Anchor設定
