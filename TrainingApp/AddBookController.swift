@@ -15,7 +15,7 @@ class AddBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: .normal)
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
@@ -42,7 +42,7 @@ class AddBookController: UIViewController {
     let bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
-        tf.keyboardType = UIKeyboardType.numberPad
+        tf.keyboardType = .numberPad
         return tf
     }()
     
@@ -60,15 +60,15 @@ class AddBookController: UIViewController {
     
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
-        picker.datePickerMode = UIDatePickerMode.date
+        picker.addTarget(self, action: #selector(changedDateEvent), for: .valueChanged)
+        picker.datePickerMode = .date
         return picker
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         navigationItem.title = R.string.localizable.addBookTitle()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
@@ -100,7 +100,7 @@ class AddBookController: UIViewController {
         
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        let myBoundSize = UIScreen.main.bounds.size
         let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
         let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
         

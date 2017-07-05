@@ -30,8 +30,8 @@ class LoginController: UIViewController {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleLogin(), for: UIControlState())
+        button.buttonConfig(backgroundColor: UIColor.gray, font: .systemFont(ofSize: 16))
+        button.setTitle(R.string.localizable.buttonTitleLogin(), for: .normal)
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
@@ -42,7 +42,7 @@ class LoginController: UIViewController {
 
         navigationItem.title = R.string.localizable.bookListTitle()
         navigationController?.navigationBar.isTranslucent = false
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
