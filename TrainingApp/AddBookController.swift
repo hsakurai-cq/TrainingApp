@@ -106,18 +106,18 @@ class AddBookController: UIViewController {
         
         if txtLimit >= kbdLimit {
             let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
-            UIView.animate(withDuration: duration!, animations: { () in
+            UIView.animate(withDuration: duration!) { () in
                 let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
                 self.view.transform = transform
-            })
+            }
         }
     }
     
     func keyboardWillHideNotification(_ notification: Notification) {
         let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        UIView.animate(withDuration: duration!) { () in
             self.view.transform = CGAffineTransform.identity
-        })
+        }
     }
     //キーボードの高さ処理終了
     
