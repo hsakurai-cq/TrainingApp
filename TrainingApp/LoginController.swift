@@ -15,6 +15,7 @@ class LoginController: UIViewController {
         setupLoginViews()
     }
     
+    //UI部品設定
     let emailLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail())
