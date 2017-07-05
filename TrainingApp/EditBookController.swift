@@ -14,7 +14,7 @@ class EditBookController: UIViewController {
     
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
         button.setTitle(R.string.localizable.buttonTitleSetImage(), for: .normal)
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
@@ -106,18 +106,18 @@ class EditBookController: UIViewController {
         
         if txtLimit >= kbdLimit {
             let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double
-            UIView.animate(withDuration: duration!, animations: { () in
+            UIView.animate(withDuration: duration!) { () in
                 let transform = CGAffineTransform(translationX: 0, y: -(64 + txtLimit - kbdLimit))
                 self.view.transform = transform
-            })
+            }
         }
     }
     
     func keyboardWillHideNotification(_ notification: Notification) {
         let duration: TimeInterval? = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        UIView.animate(withDuration: duration!) { () in
             self.view.transform = CGAffineTransform.identity
-        })
+        }
     }
     //キーボード高さ変更処理終了
     
