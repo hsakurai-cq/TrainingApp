@@ -1,7 +1,6 @@
 import Foundation
 
 struct Constants {
-    
     static let tabBarImageBook = "book_icon"
     static let tabBarImageUser = "user_icon"
     
