@@ -3,23 +3,6 @@ import UIKit
 class AddBookController: UIViewController {
     
     var txtActiveField = UITextField()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.white
-        navigationItem.title = R.string.localizable.addBookTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
-        navigationController?.navigationBar.isTranslucent = false
-        
-        setupAddBookViews()
-        
-        bookNameTextField.delegate = self
-        bookPriceTextField.delegate = self
-        purchaseDateField.delegate = self
-        purchaseDateField.inputView = datePicker
-    }
     
     //UI部品設定
     let registeredImageView: UIImageView = {
@@ -81,6 +64,23 @@ class AddBookController: UIViewController {
         picker.datePickerMode = UIDatePickerMode.date
         return picker
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
+        navigationItem.title = R.string.localizable.addBookTitle()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
+        navigationController?.navigationBar.isTranslucent = false
+        
+        setupAddBookViews()
+        
+        bookNameTextField.delegate = self
+        bookPriceTextField.delegate = self
+        purchaseDateField.delegate = self
+        purchaseDateField.inputView = datePicker
+    }
     
     //ここからキーボードの高さ変更処理
     override func viewWillAppear(_ animated: Bool) {

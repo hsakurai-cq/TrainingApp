@@ -2,6 +2,15 @@ import UIKit
 
 class ConfigurationController: UIViewController {
     
+    lazy var configureButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
+        button.setTitle(R.string.localizable.buttonTitleConfig(), for: UIControlState())
+        button.setTitleColor(.white, for: UIControlState())
+        button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -12,15 +21,6 @@ class ConfigurationController: UIViewController {
         
         setupConfigureButton()
     }
-    
-    lazy var configureButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleConfig(), for: UIControlState())
-        button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
-        return button
-    }()
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.navigationItem.title = R.string.localizable.buttonTitleConfig()

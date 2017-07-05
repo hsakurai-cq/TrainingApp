@@ -3,6 +3,16 @@ import UIKit
 class BookListController: UIViewController {
     
     var bookTableView: UITableView!
+    
+    let loadMoreButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(tappedLoadMoreButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +32,6 @@ class BookListController: UIViewController {
         
         setupLoadMoreButton()
     }
-    
-    let loadMoreButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.lightGray
-        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(tappedLoadMoreButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
     override func viewWillAppear(_ animated: Bool) {
         

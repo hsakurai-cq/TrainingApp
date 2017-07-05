@@ -1,19 +1,6 @@
 import UIKit
 
 class LoginController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        navigationItem.title = R.string.localizable.bookListTitle()
-        navigationController?.navigationBar.isTranslucent = false
-        view.backgroundColor = UIColor.white
-        
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-        
-        setupLoginViews()
-    }
     
     //UI部品設定
     let emailLabel: UILabel = {
@@ -49,6 +36,19 @@ class LoginController: UIViewController {
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationItem.title = R.string.localizable.bookListTitle()
+        navigationController?.navigationBar.isTranslucent = false
+        view.backgroundColor = UIColor.white
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
+        setupLoginViews()
+    }
     
     func tappedLoginButton() {
         let tabBarController = TabBarController()
