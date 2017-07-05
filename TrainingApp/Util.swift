@@ -2,10 +2,10 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    func labelConfig(text: String) {
+    func labelConfig(text: String, font: UIFont, backgroundColor: UIColor) {
         self.text = text
-        self.font = UIFont.systemFont(ofSize: 15)
-        self.backgroundColor = UIColor.white
+        self.font = font
+        self.backgroundColor = backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.masksToBounds = true
     }
@@ -20,14 +20,16 @@ extension UITextField {
 }
 
 extension UIButton {
-    func buttonConfig(backgroundColor: UIColor, font: UIFont) {
+    func buttonConfig(backgroundColor: UIColor, font: UIFont, tite: String, tintColor: UIColor) {
         self.backgroundColor = backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.font = font
+        self.setTitle(tite, for: .normal)
+        self.setTitleColor(tintColor, for: .normal)
     }
 }
 extension Date {
-    func toString(sender: UIDatePicker) -> String {
+    static func toString(sender: UIDatePicker) -> String {
         let dateFormmtter = DateFormatter()
         dateFormmtter.dateFormat = Constants.dateFormat
         return dateFormmtter.string(from: sender.date)
