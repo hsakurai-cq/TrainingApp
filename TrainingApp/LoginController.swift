@@ -5,7 +5,7 @@ class LoginController: UIViewController {
     //UI部品設定
     let emailLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitleEmail())
+        label.labelConfig(text: R.string.localizable.labelTitleEmail(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -17,7 +17,7 @@ class LoginController: UIViewController {
     
     let passwordLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePassword())
+        label.labelConfig(text: R.string.localizable.labelTitlePassword(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -30,9 +30,7 @@ class LoginController: UIViewController {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: UIColor.gray, font: .systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleLogin(), for: .normal)
-        button.setTitleColor(.white, for: UIControlState())
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleLogin(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
     }()

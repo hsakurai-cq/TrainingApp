@@ -14,16 +14,14 @@ class AddBookController: UIViewController {
     
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: .normal)
-        button.setTitleColor(.white, for: UIControlState())
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleSetImage(), tintColor: .white)
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
     }()
     
     let bookNameLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitleBook())
+        label.labelConfig(text: R.string.localizable.labelTitleBook(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -35,7 +33,7 @@ class AddBookController: UIViewController {
     
     let bookPriceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePrice())
+        label.labelConfig(text: R.string.localizable.labelTitlePrice(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -48,7 +46,7 @@ class AddBookController: UIViewController {
     
     let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
+        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -134,7 +132,7 @@ class AddBookController: UIViewController {
 extension AddBookController: UITextFieldDelegate {
    
     func changedDateEvent(sender: UIDatePicker) {
-        purchaseDateField.text = Date().toString(sender: sender)
+        purchaseDateField.text = Date.toString(sender: sender)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -21,19 +21,19 @@ class BookCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "PHP辞典")
+        label.labelConfig(text: "PHP辞典", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "3200円 + 税")
+        label.labelConfig(text: "3200円 + 税", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "2017/06/30")
+        label.labelConfig(text: "2017-06-30", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     

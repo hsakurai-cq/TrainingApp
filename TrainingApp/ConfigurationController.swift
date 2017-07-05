@@ -4,9 +4,7 @@ class ConfigurationController: UIViewController {
     
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleConfig(), for: .normal)
-        button.setTitleColor(.white, for: UIControlState())
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleConfig(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
         return button
     }()
