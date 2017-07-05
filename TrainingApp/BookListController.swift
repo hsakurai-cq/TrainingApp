@@ -7,8 +7,8 @@ class BookListController: UIViewController {
     let loadMoreButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.lightGray
-        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(tappedLoadMoreButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -19,7 +19,7 @@ class BookListController: UIViewController {
         
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = .red
         
         bookTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100))
         
@@ -49,6 +49,7 @@ class BookListController: UIViewController {
     
     func tappedLoadMoreButton() {
         //Todo 読み込み処理
+        print("tapped load more button...")
     }
 
 }
@@ -65,7 +66,7 @@ extension BookListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = bookTableView.dequeueReusableCell(withIdentifier: Constants.bookCell, for: indexPath)
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = .none
         return cell
     }
     

@@ -15,7 +15,7 @@ class EditBookController: UIViewController {
     lazy var registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: .normal)
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
         return button
@@ -60,15 +60,15 @@ class EditBookController: UIViewController {
     
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
-        picker.datePickerMode = UIDatePickerMode.date
+        picker.addTarget(self, action: #selector(changedDateEvent), for: .valueChanged)
+        picker.datePickerMode = .date
         return picker
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
         
         setupEditBookViews()
@@ -86,6 +86,7 @@ class EditBookController: UIViewController {
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(tappedBackButton))
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedEditButton))
         
+        //以下、キーボード高さ変更処理
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -99,7 +100,7 @@ class EditBookController: UIViewController {
         
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let myBoundSize: CGSize = UIScreen.main.bounds.size
+        let myBoundSize = UIScreen.main.bounds.size
         let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
         let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
         
@@ -118,6 +119,7 @@ class EditBookController: UIViewController {
             self.view.transform = CGAffineTransform.identity
         })
     }
+    //キーボード高さ変更処理終了
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         txtActiveField = textField

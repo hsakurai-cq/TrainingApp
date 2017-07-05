@@ -5,7 +5,7 @@ class ConfigurationController: UIViewController {
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleConfig(), for: UIControlState())
+        button.setTitle(R.string.localizable.buttonTitleConfig(), for: .normal)
         button.setTitleColor(.white, for: UIControlState())
         button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
         return button
@@ -17,7 +17,7 @@ class ConfigurationController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         navigationController?.navigationBar.isTranslucent = false
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         
         setupConfigureButton()
     }
