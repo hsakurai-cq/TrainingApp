@@ -27,11 +27,11 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
         
         //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
         self.tabBarController?.navigationItem.title = R.string.localizable.bookListTitle()
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleAdd(), style: .plain, target: self, action: #selector(handleAddButton))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleAdd(), style: .plain, target: self, action: #selector(tappedAddButton))
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
     }
     
-    func handleAddButton() {
+    func tappedAddButton() {
         let addBookController = AddBookController()
         let toAddBook = UINavigationController(rootViewController: addBookController)
         present(toAddBook, animated: true, completion: nil)
@@ -68,7 +68,7 @@ class BookListController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     
     func loadMore() {
-        
+        //Todo 読み込み処理
     }
     
     func setupLoadMoreButton() {

@@ -25,7 +25,7 @@ class ConfigurationController: UIViewController {
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
         button.setTitle(R.string.localizable.buttonTitleConfig(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(handleTapConfig), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
         return button
     }()
     
@@ -36,7 +36,7 @@ class ConfigurationController: UIViewController {
         configureButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
-    func handleTapConfig() {
+    func tappedConfigButton() {
         print("go to configure page...")
         let accountConfigController = AccountConfigController()
         let toConfig = UINavigationController(rootViewController: accountConfigController)

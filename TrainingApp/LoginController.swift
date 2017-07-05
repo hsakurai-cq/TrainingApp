@@ -51,11 +51,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
         button.setTitle(R.string.localizable.buttonTitleLogin(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(login), for: .touchUpInside)
         return button
     }()
     
-    func handleLogin() {
+    func login() {
         let tabBarController = TabBarController()
         let navController = UINavigationController(rootViewController: tabBarController)
         present(navController, animated: true, completion: nil)
