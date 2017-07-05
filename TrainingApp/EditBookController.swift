@@ -12,7 +12,7 @@ class EditBookController: UIViewController {
         return imageView
     }()
     
-    lazy var registerImageButton: UIButton = {
+    let registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleSetImage(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
