@@ -54,6 +54,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         print("save account...")
     }
     
+    //UI部品設定
     let emailConfigLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail())
