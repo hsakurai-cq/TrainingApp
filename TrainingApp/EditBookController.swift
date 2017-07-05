@@ -18,12 +18,73 @@ class EditBookController: UIViewController {
         purchaseDateField.inputView = datePicker
     }
     
+    //UI部品設定
+    let registeredImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .blue
+        return imageView
+    }()
+    
+    lazy var registerImageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
+        button.setTitleColor(.white, for: UIControlState())
+        button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
+        return button
+    }()
+    
+    let bookNameLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitleBook())
+        return label
+    }()
+    
+    let bookNameTextField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
+    }()
+    
+    let bookPriceLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitlePrice())
+        return label
+    }()
+    
+    let bookPriceTextField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        tf.keyboardType = UIKeyboardType.numberPad
+        return tf
+    }()
+    
+    let purchaseDateLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
+        return label
+    }()
+    
+    let purchaseDateField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
+    }()
+    
+    let datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
+        picker.datePickerMode = UIDatePickerMode.date
+        return picker
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.tabBarController?.navigationItem.title = R.string.localizable.editBookTitle()
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(backButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(editBook))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(tappedBackButton))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedEditButton))
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -63,73 +124,14 @@ class EditBookController: UIViewController {
         return true
     }
     
-    func backButton() {
+    func tappedBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
-    func editBook() {
+    func tappedEditButton() {
         print("Edit Finished...")
     }
     
-    //UI部品設定
-    let registeredImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
-        return imageView
-    }()
-    
-    lazy var registerImageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: .gray, font: UIFont.systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
-        button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
-        return button
-    }()
-    
-    let bookNameLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitleBook())
-        return label
-    }()
-    
-    let bookNameTextField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    
-    let bookPriceLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePrice())
-        return label
-    }()
-    
-    let bookPriceTextField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    
-    let purchaseDateLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
-        return label
-    }()
-    
-    let purchaseDateField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    
-    let datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
-        picker.datePickerMode = UIDatePickerMode.date
-        return picker
-    }()
 }
 
 extension EditBookController: UITextFieldDelegate {
@@ -157,7 +159,7 @@ extension EditBookController: UITextFieldDelegate {
 }
 
 extension EditBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func registerImage() {
+    func tappedRegisterImageButton() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)

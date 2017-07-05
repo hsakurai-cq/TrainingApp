@@ -46,11 +46,11 @@ class LoginController: UIViewController {
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
         button.setTitle(R.string.localizable.buttonTitleLogin(), for: UIControlState())
         button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(login), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
     }()
     
-    func login() {
+    func tappedLoginButton() {
         let tabBarController = TabBarController()
         let navController = UINavigationController(rootViewController: tabBarController)
         present(navController, animated: true, completion: nil)

@@ -13,12 +13,6 @@ class ConfigurationController: UIViewController {
         setupConfigureButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.navigationItem.title = R.string.localizable.buttonTitleConfig()
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-    }
-    
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: UIColor.gray, font: UIFont.systemFont(ofSize: 16))
@@ -27,6 +21,12 @@ class ConfigurationController: UIViewController {
         button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
         return button
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.navigationItem.title = R.string.localizable.buttonTitleConfig()
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+    }
     
     func tappedConfigButton() {
         print("go to configure page...")

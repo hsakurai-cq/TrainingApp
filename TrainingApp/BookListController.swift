@@ -23,6 +23,16 @@ class BookListController: UIViewController {
         setupLoadMoreButton()
     }
     
+    let loadMoreButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.lightGray
+        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(tappedLoadMoreButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         
         //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
@@ -37,17 +47,7 @@ class BookListController: UIViewController {
         present(toAddBook, animated: true, completion: nil)
     }
     
-    let loadMoreButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.lightGray
-        button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: UIControlState())
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(loadMore), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    func loadMore() {
+    func tappedLoadMoreButton() {
         //Todo 読み込み処理
     }
 
