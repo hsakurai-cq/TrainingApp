@@ -9,8 +9,8 @@ class AddBookController: UIViewController {
         
         view.backgroundColor = UIColor.white
         navigationItem.title = R.string.localizable.addBookTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(modalClose))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(saveBook))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
         navigationController?.navigationBar.isTranslucent = false
         
         setupAddBookViews()
@@ -20,6 +20,67 @@ class AddBookController: UIViewController {
         purchaseDateField.delegate = self
         purchaseDateField.inputView = datePicker
     }
+    
+    //UI部品設定
+    let registeredImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .blue
+        return imageView
+    }()
+    
+    lazy var registerImageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
+        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
+        button.setTitleColor(.white, for: UIControlState())
+        button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
+        return button
+    }()
+    
+    let bookNameLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitleBook())
+        return label
+    }()
+    
+    let bookNameTextField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
+    }()
+    
+    let bookPriceLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitlePrice())
+        return label
+    }()
+    
+    let bookPriceTextField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        tf.keyboardType = UIKeyboardType.numberPad
+        return tf
+    }()
+    
+    let purchaseDateLabel: UILabel = {
+        let label = UILabel()
+        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
+        return label
+    }()
+    
+    let purchaseDateField: UITextField = {
+        let tf = UITextField()
+        tf.textFieldConfig()
+        return tf
+    }()
+    
+    let datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
+        picker.datePickerMode = UIDatePickerMode.date
+        return picker
+    }()
     
     //ここからキーボードの高さ変更処理
     override func viewWillAppear(_ animated: Bool) {
@@ -60,65 +121,14 @@ class AddBookController: UIViewController {
     }
     //キーボードの高さ処理終了
     
-    func modalClose() {
+    func tappedCloseButton() {
         dismiss(animated: true, completion: nil)
     }
     
-    func saveBook() {
+    func tappedSaveButton() {
         print("save book...")
     }
     
-    //UI部品設定
-    let registeredImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
-        return imageView
-    }()
-    lazy var registerImageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16))
-        button.setTitle(R.string.localizable.buttonTitleSetImage(), for: UIControlState())
-        button.setTitleColor(.white, for: UIControlState())
-        button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
-        return button
-    }()
-    let bookNameLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitleBook())
-        return label
-    }()
-    let bookNameTextField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    let bookPriceLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePrice())
-        return label
-    }()
-    let bookPriceTextField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    let purchaseDateLabel: UILabel = {
-        let label = UILabel()
-        label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate())
-        return label
-    }()
-    let purchaseDateField: UITextField = {
-        let tf = UITextField()
-        tf.textFieldConfig()
-        return tf
-    }()
-    let datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.addTarget(self, action: #selector(changedDateEvent), for: UIControlEvents.valueChanged)
-        picker.datePickerMode = UIDatePickerMode.date
-        return picker
-    }()
 }
 
 extension AddBookController: UITextFieldDelegate {

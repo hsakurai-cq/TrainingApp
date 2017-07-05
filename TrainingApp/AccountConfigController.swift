@@ -31,29 +31,6 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.emailConfigTextField.isFirstResponder {
-            self.emailConfigTextField.resignFirstResponder()
-        }
-        if self.passwordConfigTextField.isFirstResponder {
-            self.passwordConfigTextField.resignFirstResponder()
-        }
-        if self.passwordCheckTextField.isFirstResponder {
-            self.passwordCheckTextField.resignFirstResponder()
-        }
-        
-    }
-    
-    func modalClose() {
-        print("close...")
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func saveAccount() {
-        //Todo 保存処理実装
-        print("save account...")
-    }
-    
     //UI部品設定
     let emailConfigLabel: UILabel = {
         let label = UILabel()
@@ -92,6 +69,30 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
         tf.isSecureTextEntry = true
         return tf
     }()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.emailConfigTextField.isFirstResponder {
+            self.emailConfigTextField.resignFirstResponder()
+        }
+        if self.passwordConfigTextField.isFirstResponder {
+            self.passwordConfigTextField.resignFirstResponder()
+        }
+        if self.passwordCheckTextField.isFirstResponder {
+            self.passwordCheckTextField.resignFirstResponder()
+        }
+        
+    }
+    
+    func modalClose() {
+        print("close...")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func saveAccount() {
+        //Todo 保存処理実装
+        print("save account...")
+    }
+    
 }
 
 //Anchor設定
