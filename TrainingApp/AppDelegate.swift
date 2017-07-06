@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        } else {
 //            window?.rootViewController = UINavigationController(rootViewController: LoginController())
 //        }
-        window?.rootViewController = UINavigationController(rootViewController: LoginController())
+        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         return true
     }
 

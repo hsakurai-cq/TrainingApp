@@ -1,6 +1,6 @@
 import UIKit
 
-class EditBookController: UIViewController {
+class EditBookViewController: UIViewController {
     
     var txtActiveField = UITextField()
     
@@ -134,7 +134,7 @@ class EditBookController: UIViewController {
     
 }
 
-extension EditBookController: UITextFieldDelegate {
+extension EditBookViewController: UITextFieldDelegate {
     
     func changedDateEvent(sender: UIDatePicker) {
         purchaseDateField.text = Date.toString(sender: sender)
@@ -158,7 +158,7 @@ extension EditBookController: UITextFieldDelegate {
     }
 }
 
-extension EditBookController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditBookViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func tappedRegisterImageButton() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -184,7 +184,7 @@ extension EditBookController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 //Anchor設定
-extension EditBookController {
+extension EditBookViewController {
         func setupEditBookViews() {
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)

@@ -1,6 +1,6 @@
 import UIKit
 
-class BookCell: UITableViewCell {
+class BookTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,7 +39,7 @@ class BookCell: UITableViewCell {
     
 }
 
-extension BookCell {
+extension BookTableViewCell {
     func setupCellViews() {
         contentView.addSubview(bookImageView)
         contentView.addSubview(titleLabel)

@@ -1,6 +1,6 @@
 import UIKit
 
-class AccountConfigController: UIViewController, UITextFieldDelegate {
+class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     
     var txtActiveField = UITextField()
     
@@ -95,7 +95,7 @@ class AccountConfigController: UIViewController, UITextFieldDelegate {
 }
 
 //Anchor設定
-extension AccountConfigController {
+extension AccountConfigViewController {
     func setupConfigViews() {
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)

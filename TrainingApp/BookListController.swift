@@ -1,11 +1,11 @@
 import UIKit
 
-class BookListController: UIViewController {
+class BookListViewController: UIViewController {
     
     lazy var bookTableView: UITableView = {
         let table = UITableView()
         table.rowHeight = 100
-        table.register(BookCell.self, forCellReuseIdentifier: Constants.bookCell)
+        table.register(BookTableViewCell.self, forCellReuseIdentifier: Constants.bookCell)
         table.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 100)
         table.dataSource = self
         table.delegate = self
@@ -41,7 +41,7 @@ class BookListController: UIViewController {
     }
     
     func tappedAddButton() {
-        let addBookController = AddBookController()
+        let addBookController = AddBookViewController()
         let toAddBook = UINavigationController(rootViewController: addBookController)
         present(toAddBook, animated: true, completion: nil)
         print("tapped add button")
@@ -54,7 +54,7 @@ class BookListController: UIViewController {
 
 }
 
-extension BookListController: UITableViewDelegate, UITableViewDataSource {
+extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -71,13 +71,13 @@ extension BookListController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editBookController = EditBookController()
+        let editBookController = EditBookViewController()
         navigationController?.pushViewController(editBookController, animated: true)
     }
 }
 
 //Anchor設定
-extension BookListController {
+extension BookListViewController {
     func setupBookListViews() {
         view.addSubview(bookTableView)
         view.addSubview(loadMoreButton)

@@ -1,6 +1,6 @@
 import UIKit
 
-class LoginController: UIViewController {
+class LoginViewController: UIViewController {
     
     //UI部品設定
     let emailLabel: UILabel = {
@@ -56,7 +56,7 @@ class LoginController: UIViewController {
     
 }
 
-extension LoginController: UITextFieldDelegate {
+extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -73,7 +73,7 @@ extension LoginController: UITextFieldDelegate {
 }
 
 //Anchor設定
-extension LoginController {
+extension LoginViewController {
     func setupLoginViews() {
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)

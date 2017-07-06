@@ -1,6 +1,6 @@
 import UIKit
 
-class ConfigurationController: UIViewController {
+class ConfigurationViewController: UIViewController {
     
     lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
@@ -28,13 +28,13 @@ class ConfigurationController: UIViewController {
     
     func tappedConfigButton() {
         print("go to configure page...")
-        let accountConfigController = AccountConfigController()
-        let toConfig = UINavigationController(rootViewController: accountConfigController)
+        let accountConfigViewController = AccountConfigViewController()
+        let toConfig = UINavigationController(rootViewController: accountConfigViewController)
         present(toConfig, animated: true, completion: nil)
     }
 }
 
-extension ConfigurationController {
+extension ConfigurationViewController {
     func setupConfigureButton() {
         view.addSubview(configureButton)
         configureButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
