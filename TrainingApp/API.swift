@@ -1,15 +1,15 @@
 import APIKit
 import Himotoki
 
-protocol API: Request { }
+protocol APIRequest: Request { }
 
-extension API {
+extension APIRequest {
     var baseURL: URL {
         return URL(string: "http://54.238.252.116")!
     }
 }
 
-extension API where Response: Decodable {
+extension APIRequest where Response: Decodable {
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         return try Response.decodeValue(object)
     }

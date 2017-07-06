@@ -15,6 +15,8 @@
 		5DF2389A1F0E0349001B848F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238991F0E0349001B848F /* Result.framework */; };
 		5DF2389D1F0E2150001B848F /* Himotoki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF2389C1F0E2150001B848F /* Himotoki.framework */; };
 		5DF238A01F0E4A37001B848F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF2389F1F0E4A37001B848F /* API.swift */; };
+		5DF238A21F0E4FF3001B848F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238A11F0E4FF3001B848F /* User.swift */; };
+		5DF238A41F0E5133001B848F /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238A31F0E5133001B848F /* Login.swift */; };
 		8F330F321F036B7100091056 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F311F036B7100091056 /* EditBookController.swift */; };
 		8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F331F03C80C00091056 /* AccountConfigController.swift */; };
 		8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */; };
@@ -39,6 +41,8 @@
 		5DF238991F0E0349001B848F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		5DF2389C1F0E2150001B848F /* Himotoki.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Himotoki.framework; path = Carthage/Build/iOS/Himotoki.framework; sourceTree = "<group>"; };
 		5DF2389F1F0E4A37001B848F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		5DF238A11F0E4FF3001B848F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5DF238A31F0E5133001B848F /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8F330F311F036B7100091056 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
 		8F330F331F03C80C00091056 /* AccountConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfigController.swift; sourceTree = "<group>"; };
 		8F3D949C1F00A92600C06DA1 /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				5DF2389F1F0E4A37001B848F /* API.swift */,
+				5DF238A11F0E4FF3001B848F /* User.swift */,
+				5DF238A31F0E5133001B848F /* Login.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,12 +289,14 @@
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,
 				5DF238A01F0E4A37001B848F /* API.swift in Sources */,
 				5DF238961F0B957C001B848F /* R.generated.swift in Sources */,
+				5DF238A21F0E4FF3001B848F /* User.swift in Sources */,
 				8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */,
 				8F3D94B81F00F91500C06DA1 /* BookListController.swift in Sources */,
 				8F3D94A81F00A92600C06DA1 /* TrainingApp.xcdatamodeld in Sources */,
 				8F330F321F036B7100091056 /* EditBookController.swift in Sources */,
 				8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */,
 				5D0B63A91F0B1802003E3508 /* Constants.swift in Sources */,
+				5DF238A41F0E5133001B848F /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
