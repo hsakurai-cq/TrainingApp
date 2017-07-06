@@ -2,10 +2,13 @@ import UIKit
 
 class BookListController: UIViewController {
     
-    var bookTableView: UITableView = {
+    lazy var bookTableView: UITableView = {
         let table = UITableView()
         table.rowHeight = 100
         table.register(BookCell.self, forCellReuseIdentifier: Constants.bookCell)
+        table.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 100)
+        table.dataSource = self
+        table.delegate = self
         return table
     }()
     
@@ -25,9 +28,6 @@ class BookListController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         view.backgroundColor = .red
-        
-        bookTableView.dataSource = self
-        bookTableView.delegate = self
         
         setupBookListViews()
     }
@@ -81,7 +81,7 @@ extension BookListController {
     func setupBookListViews() {
         view.addSubview(bookTableView)
         view.addSubview(loadMoreButton)
-        bookTableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100)
+        
         loadMoreButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         loadMoreButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         loadMoreButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
