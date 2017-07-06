@@ -1,4 +1,16 @@
 disabled_rules:
+- trailing_comma
+- file_length
+- statement_position
+- todo
+- trailing_semicolon
+- unused_closure_parameter
+- empty_parentheses_with_trailing_closure
+- mark
+- colon
+- force_try
+- function_body_length
+- operator_whitespace
 - identifier_name
 - generic_type_name
 - opening_brace
@@ -12,8 +24,8 @@ line_length: 300
 excluded:
 - Pods
 type_body_length:
-- 200 # warning
-- 400 # error
+- 600 # warning
+- 700 # error
 variable_name_max_length:
 - 60 # warning
 - 80 # error

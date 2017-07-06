@@ -36,7 +36,6 @@ class BookTableViewCell: UITableViewCell {
         label.labelConfig(text: "2017-06-30", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
-    
 }
 
 extension BookTableViewCell {

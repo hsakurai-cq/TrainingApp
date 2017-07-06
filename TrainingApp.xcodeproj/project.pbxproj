@@ -11,6 +11,8 @@
 		5D0B63A91F0B1802003E3508 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B63A81F0B1802003E3508 /* Constants.swift */; };
 		5DF238921F0B94C6001B848F /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238911F0B94C6001B848F /* Rswift.framework */; };
 		5DF238961F0B957C001B848F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238951F0B957C001B848F /* R.generated.swift */; };
+		5DF238981F0E0336001B848F /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238971F0E0336001B848F /* APIKit.framework */; };
+		5DF2389A1F0E0349001B848F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238991F0E0349001B848F /* Result.framework */; };
 		8F330F321F036B7100091056 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F311F036B7100091056 /* EditBookController.swift */; };
 		8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F331F03C80C00091056 /* AccountConfigController.swift */; };
 		8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		5D0B63A81F0B1802003E3508 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DF238911F0B94C6001B848F /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
 		5DF238951F0B957C001B848F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = ../R.generated.swift; sourceTree = "<group>"; };
+		5DF238971F0E0336001B848F /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
+		5DF238991F0E0349001B848F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		8F330F311F036B7100091056 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
 		8F330F331F03C80C00091056 /* AccountConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfigController.swift; sourceTree = "<group>"; };
 		8F3D949C1F00A92600C06DA1 /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DF2389A1F0E0349001B848F /* Result.framework in Frameworks */,
+				5DF238981F0E0336001B848F /* APIKit.framework in Frameworks */,
 				5DF238921F0B94C6001B848F /* Rswift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +68,8 @@
 		5DF238901F0B94C6001B848F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5DF238991F0E0349001B848F /* Result.framework */,
+				5DF238971F0E0336001B848F /* APIKit.framework */,
 				5DF238911F0B94C6001B848F /* Rswift.framework */,
 			);
 			name = Frameworks;
@@ -209,6 +217,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Rswift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 			);
 			outputPaths = (
 			);

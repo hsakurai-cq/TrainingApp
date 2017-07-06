@@ -1,1 +1,2 @@
 github "mac-cain13/R.swift.Library"
+github "ishkawa/APIKit" ~> 3.0
