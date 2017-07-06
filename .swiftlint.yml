@@ -1,0 +1,25 @@
+disabled_rules:
+- identifier_name
+- generic_type_name
+- opening_brace
+- line_length
+- notification_center_detachment
+- nesting
+- trailing_whitespace
+- type_name
+- force_cast
+line_length: 300
+excluded:
+- Pods
+type_body_length:
+- 200 # warning
+- 400 # error
+variable_name_max_length:
+- 60 # warning
+- 80 # error
+variable_name_min_length:
+- 1 # warning
+- 0 # error
+function_body_length:
+- 100 # warning
+- 200 # error

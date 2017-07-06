@@ -1,0 +1,4 @@
+# R.swift
+*.generated.swift
+Carthage/
+xcuserdata/

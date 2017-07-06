@@ -1,0 +1,20 @@
+"bookListTitle" = "Book List";
+"addBookTitle" = "Add Book";
+"accountConfigTitle" = "Config Account";
+"editBookTitle" = "Edit Book";
+"buttonTitleAdd" = "Add";
+"buttonTitleSave" = "Save";
+"buttonTitleClose" = "Close";
+"buttonTitleBack" = "Back";
+"buttonTitleNil" = "";
+"buttonTitleLoadMore" = "Load More";
+"buttonTitleConfig" = "Configuration";
+"buttonTitleSetImage" = "Set Image";
+"buttonTitleLogin" = "Login";
+
+"labelTitleEmail" = "Email";
+"labelTitlePassword" = "Password";
+"labelTitleConfPass" = "Comfirm";
+"labelTitleBook" = "Book";
+"labelTitlePrice" = "Price";
+"labelTitlePurchaseDate" = "Purchase Date";
