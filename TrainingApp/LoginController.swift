@@ -46,12 +46,24 @@ class LoginViewController: UIViewController {
         self.passwordTextField.delegate = self
         
         setupLoginViews()
+        
     }
     
     func tappedLoginButton() {
-        let tabBarController = TabBarController()
-        let navController = UINavigationController(rootViewController: tabBarController)
-        present(navController, animated: true, completion: nil)
+//        guard let email = emailTextField.text,password = passwordTextField.text else {
+//            print("form is not valid")
+//            return
+//        }
+        let alert = UIAlertController(title: "LOG IN", message: "You login?", preferredStyle: .alert)
+        let alertNext = UIAlertAction(title: "log in", style: .default, handler: { action in
+            let tabBarController = TabBarController()
+            let navController = UINavigationController(rootViewController: tabBarController)
+            self.present(navController, animated: true, completion: nil)
+        })
+        let alertCancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        alert.addAction(alertNext)
+        alert.addAction(alertCancel)
+        present(alert, animated: true, completion: nil)
     }
     
 }
