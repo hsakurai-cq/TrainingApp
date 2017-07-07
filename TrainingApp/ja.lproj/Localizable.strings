@@ -18,3 +18,10 @@
 "labelTitleBook" = "書籍";
 "labelTitlePrice" = "金額";
 "labelTitlePurchaseDate" = "購入日";
+
+"email" = "email";
+"password" = "password";
+"ErrorEmpty" = "%@ is empty";
+
+"ok" = "OK!";
+"error" = "error";

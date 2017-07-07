@@ -17,6 +17,7 @@
 		5DF238A01F0E4A37001B848F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF2389F1F0E4A37001B848F /* API.swift */; };
 		5DF238A21F0E4FF3001B848F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238A11F0E4FF3001B848F /* User.swift */; };
 		5DF238A41F0E5133001B848F /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238A31F0E5133001B848F /* Login.swift */; };
+		5DF238A61F0F1CE1001B848F /* Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238A51F0F1CE1001B848F /* Validate.swift */; };
 		8F330F321F036B7100091056 /* EditBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F311F036B7100091056 /* EditBookController.swift */; };
 		8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F330F331F03C80C00091056 /* AccountConfigController.swift */; };
 		8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D949F1F00A92600C06DA1 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 		5DF2389F1F0E4A37001B848F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5DF238A11F0E4FF3001B848F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5DF238A31F0E5133001B848F /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5DF238A51F0F1CE1001B848F /* Validate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validate.swift; sourceTree = "<group>"; };
 		8F330F311F036B7100091056 /* EditBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookController.swift; sourceTree = "<group>"; };
 		8F330F331F03C80C00091056 /* AccountConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfigController.swift; sourceTree = "<group>"; };
 		8F3D949C1F00A92600C06DA1 /* TrainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 			children = (
 				8FBA4D631F05D3B000F00B60 /* Util.swift */,
 				5D0B63A81F0B1802003E3508 /* Constants.swift */,
+				5DF238A51F0F1CE1001B848F /* Validate.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DF238A61F0F1CE1001B848F /* Validate.swift in Sources */,
 				8F3D94BA1F00F9C600C06DA1 /* ConfigurationController.swift in Sources */,
 				8F3D94A21F00A92600C06DA1 /* TabBarController.swift in Sources */,
 				8FBA4D641F05D3B000F00B60 /* Util.swift in Sources */,

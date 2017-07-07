@@ -18,3 +18,10 @@
 "labelTitleBook" = "Book";
 "labelTitlePrice" = "Price";
 "labelTitlePurchaseDate" = "Purchase Date";
+
+"email" = "email";
+"password" = "password";
+"ErrorEmpty" = "%@ is empty";
+
+"ok" = "OK!";
+"error" = "error";

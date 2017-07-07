@@ -52,28 +52,21 @@ class LoginViewController: UIViewController {
     }
     
     func tappedLoginButton() {
-//        guard let email = emailTextField.text,password = passwordTextField.text else {
-//            print("form is not valid")
-//            return
-//        }
-//        let alert = UIAlertController(title: "LOG IN", message: "You login?", preferredStyle: .alert)
-//        let alertNext = UIAlertAction(title: "log in", style: .default, handler: { action in
-//            let tabBarController = TabBarController()
-//            let navController = UINavigationController(rootViewController: tabBarController)
-//            self.present(navController, animated: true, completion: nil)
-//        })
-//        let alertCancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
-//        alert.addAction(alertNext)
-//        alert.addAction(alertCancel)
-//        present(alert, animated: true, completion: nil)te
         let email = emailTextField.text!
         let password = passwordTextField.text!
+        let validateResult = Validate.login(email: email, password: password)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
         let request = LoginRequest(email: email, password: password)
         Session.send(request) { result in
             switch result {
             case .success(let response):
                 print(response)
                 print(result)
+                let tabBarController = TabBarController()
+                let navController = UINavigationController(rootViewController: tabBarController)
+                self.present(navController, animated: true, completion: nil)
             case .failure(let error):
                 print(error)
             }
