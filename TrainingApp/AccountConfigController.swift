@@ -1,4 +1,6 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     
@@ -89,8 +91,23 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tappedSaveButton() {
-        //Todo 保存処理実装
-        print("save account...")
+        let email = emailConfigTextField.text!
+        let password = passwordConfigTextField.text!
+        let passwordCheck = passwordCheckTextField.text!
+        let validateResult = Validate.signUp(email: email, password: password, passwordCheck: passwordCheck)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
+        let request = SingUpRequest(email: email, password: password)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                print(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
