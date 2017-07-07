@@ -19,8 +19,9 @@
 "labelTitlePrice" = "Price";
 "labelTitlePurchaseDate" = "Purchase Date";
 
-"email" = "email";
-"password" = "password";
+"email" = "Email Field";
+"password" = "Password Field";
+"passwordCheck" = "Password Check Field";
 "ErrorEmpty" = "%@ is empty";
 
 "ok" = "OK!";

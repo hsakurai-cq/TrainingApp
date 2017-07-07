@@ -19,9 +19,10 @@
 "labelTitlePrice" = "金額";
 "labelTitlePurchaseDate" = "購入日";
 
-"email" = "email";
-"password" = "password";
-"ErrorEmpty" = "%@ is empty";
+"email" = "メールアドレス";
+"password" = "パスワード";
+"passwordCheck" = "パスワード確認欄";
+"ErrorEmpty" = "%@ が未入力です";
 
 "ok" = "OK!";
 "error" = "error";
