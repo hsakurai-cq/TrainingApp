@@ -22,6 +22,7 @@
 "email" = "メールアドレス";
 "password" = "パスワード";
 "passwordCheck" = "パスワード確認欄";
+"passwordMismatch" = "パスワード不一致";
 "ErrorEmpty" = "%@ が未入力です";
 
 "ok" = "OK!";

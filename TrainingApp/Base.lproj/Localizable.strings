@@ -22,6 +22,7 @@
 "email" = "Email Field";
 "password" = "Password Field";
 "passwordCheck" = "Password Check Field";
+"passwordMismatch" = "Password Mismatch";
 "ErrorEmpty" = "%@ is empty";
 
 "ok" = "OK!";
