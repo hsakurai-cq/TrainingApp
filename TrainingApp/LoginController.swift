@@ -63,7 +63,9 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let response):
                 print(response)
-                print(result)
+                let userDefault = UserDefaults.standard
+                userDefault.set(response.id, forKey: "user_id")
+                userDefault.set(response.token, forKey: "request_token")
                 let tabBarController = TabBarController()
                 let navController = UINavigationController(rootViewController: tabBarController)
                 self.present(navController, animated: true, completion: nil)

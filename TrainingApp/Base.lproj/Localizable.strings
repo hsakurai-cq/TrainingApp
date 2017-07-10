@@ -23,7 +23,8 @@
 "password" = "Password Field";
 "passwordCheck" = "Password Check Field";
 "passwordMismatch" = "Password Mismatch";
-"ErrorEmpty" = "%@ is empty";
+"errorEmpty" = "%@ is empty";
+"errorCounts" = "%@ counts not enough";
 
 "ok" = "OK!";
 "error" = "error";

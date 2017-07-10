@@ -10,6 +10,8 @@
 		5D0B63A41F0A5B62003E3508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B63A61F0A5B62003E3508 /* Localizable.strings */; };
 		5D0B63A91F0B1802003E3508 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0B63A81F0B1802003E3508 /* Constants.swift */; };
 		5D762AE01F0F57B100265C30 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D762ADF1F0F57B100265C30 /* SignUp.swift */; };
+		5D762AE21F0F85B600265C30 /* AddBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D762AE11F0F85B600265C30 /* AddBook.swift */; };
+		5D762AE41F0F88FA00265C30 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D762AE31F0F88FA00265C30 /* Book.swift */; };
 		5DF238921F0B94C6001B848F /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238911F0B94C6001B848F /* Rswift.framework */; };
 		5DF238961F0B957C001B848F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF238951F0B957C001B848F /* R.generated.swift */; };
 		5DF238981F0E0336001B848F /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF238971F0E0336001B848F /* APIKit.framework */; };
@@ -38,6 +40,8 @@
 		5D0B63A71F0A5B65003E3508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D0B63A81F0B1802003E3508 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D762ADF1F0F57B100265C30 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		5D762AE11F0F85B600265C30 /* AddBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBook.swift; sourceTree = "<group>"; };
+		5D762AE31F0F88FA00265C30 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		5DF238911F0B94C6001B848F /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
 		5DF238951F0B957C001B848F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = ../R.generated.swift; sourceTree = "<group>"; };
 		5DF238971F0E0336001B848F /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				5DF238A11F0E4FF3001B848F /* User.swift */,
 				5DF238A31F0E5133001B848F /* Login.swift */,
 				5D762ADF1F0F57B100265C30 /* SignUp.swift */,
+				5D762AE11F0F85B600265C30 /* AddBook.swift */,
+				5D762AE31F0F88FA00265C30 /* Book.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -295,12 +301,14 @@
 				8F3D94B61F00BAD900C06DA1 /* LoginController.swift in Sources */,
 				8F3D94BE1F01E56F00C06DA1 /* BookCell.swift in Sources */,
 				5D762AE01F0F57B100265C30 /* SignUp.swift in Sources */,
+				5D762AE41F0F88FA00265C30 /* Book.swift in Sources */,
 				5DF238A01F0E4A37001B848F /* API.swift in Sources */,
 				5DF238961F0B957C001B848F /* R.generated.swift in Sources */,
 				5DF238A21F0E4FF3001B848F /* User.swift in Sources */,
 				8F330F341F03C80C00091056 /* AccountConfigController.swift in Sources */,
 				8F3D94B81F00F91500C06DA1 /* BookListController.swift in Sources */,
 				8F3D94A81F00A92600C06DA1 /* TrainingApp.xcdatamodeld in Sources */,
+				5D762AE21F0F85B600265C30 /* AddBook.swift in Sources */,
 				8F330F321F036B7100091056 /* EditBookController.swift in Sources */,
 				8F3D94A01F00A92600C06DA1 /* AppDelegate.swift in Sources */,
 				5D0B63A91F0B1802003E3508 /* Constants.swift in Sources */,

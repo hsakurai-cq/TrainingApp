@@ -33,6 +33,14 @@ class Validate {
             return (false, R.string.localizable.errorEmpty(R.string.localizable.passwordMismatch()))
         }
         
+        guard email.characters.count >= 8 else {
+            return (false, R.string.localizable.errorCounts(R.string.localizable.email()))
+        }
+        
+        guard password.characters.count >= 3 else {
+            return (false, R.string.localizable.errorCounts(R.string.localizable.password()))
+        }
+        
         return (true, "")
     }
 }

@@ -23,7 +23,8 @@
 "password" = "パスワード";
 "passwordCheck" = "パスワード確認欄";
 "passwordMismatch" = "パスワード不一致";
-"ErrorEmpty" = "%@ が未入力です";
+"errorEmpty" = "%@ が未入力です";
+"errorCounts" = "%@ の文字数不足です";
 
 "ok" = "OK!";
 "error" = "error";

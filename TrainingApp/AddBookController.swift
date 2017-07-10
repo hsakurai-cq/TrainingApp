@@ -1,4 +1,6 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class AddBookViewController: UIViewController {
     
@@ -124,7 +126,33 @@ class AddBookViewController: UIViewController {
     }
     
     func tappedSaveButton() {
+        addBook()
         print("save book...")
+    }
+    
+    func addBook() {
+        let name = bookNameTextField.text!
+        let price = Int(bookPriceTextField.text!)
+        let purchaseDate = purchaseDateField.text!
+        let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
+        let encodedString = data?.base64EncodedString(options: [])
+        let request = AddBookRequest(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+        
+        print(UserDefaults.standard.string(forKey: "request_token")!)
+        print(UserDefaults.standard.integer(forKey: "user_id"))
+        
+        Session.send(request) { result in
+            //print(request)
+            print(result)
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        dismiss(animated: true, completion: nil)
+        
     }
     
 }
