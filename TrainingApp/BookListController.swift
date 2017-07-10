@@ -1,4 +1,6 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class BookListViewController: UIViewController {
     
@@ -38,6 +40,20 @@ class BookListViewController: UIViewController {
         self.tabBarController?.navigationItem.title = R.string.localizable.bookListTitle()
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleAdd(), style: .plain, target: self, action: #selector(tappedAddButton))
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+        
+        fetchBooks()
+    }
+    
+    func fetchBooks() {
+        let request = BookListRequest(page: "0-200")
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func tappedAddButton() {

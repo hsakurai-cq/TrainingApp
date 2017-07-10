@@ -137,12 +137,7 @@ class AddBookViewController: UIViewController {
         let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
         let encodedString = data?.base64EncodedString(options: [])
         let request = AddBookRequest(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
-        
-        print(UserDefaults.standard.string(forKey: "request_token")!)
-        print(UserDefaults.standard.integer(forKey: "user_id"))
-        
-        Session.send(request) { result in
-            //print(request)
+         Session.send(request) { result in
             print(result)
             switch result {
             case .success(let response):

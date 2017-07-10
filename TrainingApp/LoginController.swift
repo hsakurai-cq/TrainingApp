@@ -63,6 +63,7 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(let response):
                 print(response)
+                print("response.id = \(response.id)")
                 let userDefault = UserDefaults.standard
                 userDefault.set(response.id, forKey: "user_id")
                 userDefault.set(response.token, forKey: "request_token")
