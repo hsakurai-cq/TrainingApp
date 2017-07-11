@@ -21,7 +21,7 @@ class BookTableViewCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "PHP辞典", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "あかさたな", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
@@ -36,6 +36,14 @@ class BookTableViewCell: UITableViewCell {
         label.labelConfig(text: "2017-06-30", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
+    
+    func setCell(book: Book) {
+        titleLabel.text = book.name
+        print(titleLabel.text!)
+        priceLabel.text = "\(book.price) yen"
+        print(book.purchaseDate)
+        dateLabel.text =  Date.formatConverter(dateString: book.purchaseDate)
+    }
 }
 
 extension BookTableViewCell {

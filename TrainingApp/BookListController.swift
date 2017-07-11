@@ -4,6 +4,8 @@ import Himotoki
 
 class BookListViewController: UIViewController {
     
+    var books: [Book] = []
+    
     lazy var bookTableView: UITableView = {
         let table = UITableView()
         table.rowHeight = 100
@@ -49,7 +51,10 @@ class BookListViewController: UIViewController {
         Session.send(request) { result in
             switch result {
             case .success(let response):
-                print(response)
+                print("response.result: \(response.result)")
+                self.books = response.result
+                print("count:  \(self.books.count)")
+                self.bookTableView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -76,12 +81,13 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = bookTableView.dequeueReusableCell(withIdentifier: Constants.bookCell, for: indexPath)
+        let cell = bookTableView.dequeueReusableCell(withIdentifier: Constants.bookCell, for: indexPath) as! BookTableViewCell
+        cell.setCell(book: books[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

@@ -35,6 +35,15 @@ extension Date {
         dateFormmtter.dateFormat = Constants.dateFormat
         return dateFormmtter.string(from: sender.date)
     }
+    
+    static func formatConverter(dateString: String) -> String {
+        let inFormatter = DateFormatter()
+        inFormatter.dateFormat = "EEE, dd MM yyyy HH:mm:ss Z"
+        let date: NSDate = inFormatter.date(from: dateString)! as NSDate
+        let outFormatter = DateFormatter()
+        outFormatter.dateFormat = Constants.dateFormat
+        return outFormatter.string(from: date as Date)
+    }
 }
 
 extension UIAlertController {
