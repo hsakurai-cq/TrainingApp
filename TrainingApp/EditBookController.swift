@@ -141,7 +141,6 @@ class EditBookViewController: UIViewController {
     }
     
     func tappedEditButton() {
-        print("Edit Finished...")
         let id = book.id
         let name = bookNameTextField.text!
         let price = Int(bookPriceTextField.text!)
@@ -153,6 +152,7 @@ class EditBookViewController: UIViewController {
             switch result {
             case .success(let response):
                 print(response)
+                print("Edit Finished...")
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
                 print(error)
