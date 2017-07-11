@@ -16,6 +16,8 @@ class BookTableViewCell: UITableViewCell {
     let bookImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = UIColor.red
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,6 +45,7 @@ class BookTableViewCell: UITableViewCell {
         priceLabel.text = "\(book.price) yen"
         dateLabel.text =  Date.formatConverter(dateString: book.purchaseDate)
         let imageURL = URL(string: book.imageData)
+        bookImageView.kf.indicatorType = .activity
         bookImageView.kf.setImage(with: imageURL)
     }
 }

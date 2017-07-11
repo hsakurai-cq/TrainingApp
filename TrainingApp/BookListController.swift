@@ -51,9 +51,8 @@ class BookListViewController: UIViewController {
         Session.send(request) { result in
             switch result {
             case .success(let response):
-                print("response.result: \(response.result)")
+                print(response)
                 self.books = response.result
-                print("count:  \(self.books.count)")
                 self.bookTableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -71,6 +70,12 @@ class BookListViewController: UIViewController {
     func tappedLoadMoreButton() {
         //Todo 読み込み処理
         print("tapped load more button...")
+    }
+    
+    func showBookDetail(book: Book) {
+        let editBookController = EditBookViewController()
+        editBookController.book = book
+        navigationController?.pushViewController(editBookController, animated: true)
     }
 
 }
@@ -93,8 +98,8 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editBookController = EditBookViewController()
-        navigationController?.pushViewController(editBookController, animated: true)
+        let bookInfo = books[indexPath.item]
+        showBookDetail(book: bookInfo)
     }
 }
 

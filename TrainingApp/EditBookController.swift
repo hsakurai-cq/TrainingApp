@@ -2,6 +2,7 @@ import UIKit
 
 class EditBookViewController: UIViewController {
     
+    var book: Book!
     var txtActiveField = UITextField()
     
     //UI部品設定
@@ -75,6 +76,8 @@ class EditBookViewController: UIViewController {
         bookPriceTextField.delegate = self
         purchaseDateField.delegate = self
         purchaseDateField.inputView = datePicker
+        
+        print(book.name)
     }
     
     override func viewWillAppear(_ animated: Bool) {
