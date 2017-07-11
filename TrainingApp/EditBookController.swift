@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class EditBookViewController: UIViewController {
     
@@ -6,8 +7,13 @@ class EditBookViewController: UIViewController {
     var txtActiveField = UITextField()
     
     //UI部品設定
-    let registeredImageView: UIImageView = {
+    lazy var registeredImageView: UIImageView = {
         let imageView = UIImageView()
+        let imageURL = URL(string: self.book.imageData)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: imageURL)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
@@ -26,9 +32,10 @@ class EditBookViewController: UIViewController {
         return label
     }()
     
-    let bookNameTextField: UITextField = {
+    lazy var bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.text = self.book.name
         return tf
     }()
     
@@ -38,9 +45,10 @@ class EditBookViewController: UIViewController {
         return label
     }()
     
-    let bookPriceTextField: UITextField = {
+    lazy var bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.text = "\(self.book.price)"
         tf.keyboardType = UIKeyboardType.numberPad
         return tf
     }()
@@ -51,9 +59,10 @@ class EditBookViewController: UIViewController {
         return label
     }()
     
-    let purchaseDateField: UITextField = {
+    lazy var purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
+        tf.text = Date.formatConverter(dateString: self.book.purchaseDate)
         return tf
     }()
     
@@ -76,8 +85,6 @@ class EditBookViewController: UIViewController {
         bookPriceTextField.delegate = self
         purchaseDateField.delegate = self
         purchaseDateField.inputView = datePicker
-        
-        print(book.name)
     }
     
     override func viewWillAppear(_ animated: Bool) {
