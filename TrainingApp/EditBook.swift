@@ -2,19 +2,20 @@ import Foundation
 import APIKit
 import Himotoki
 
-struct AddBookRequest: APIRequest {
+struct EditBookRequest: APIRequest {
     typealias Response = RegisteredBookResponse
+    let bookId: Int
     let name: String
     let price: Int
     let purchaseDate: String
     let imageData: String
     
     var method: HTTPMethod {
-        return .post
+        return .patch
     }
     
     var path: String {
-        return "/books"
+        return "/books/\(self.bookId)"
     }
     
     var headerFields: [String : String] {
@@ -29,8 +30,7 @@ struct AddBookRequest: APIRequest {
             "name": self.name,
             "price": self.price,
             "purchase_date": self.purchaseDate,
-            "image_data": self.imageData,
-            "user_id": UserDefaults.standard.integer(forKey: "user_id")
+            "image_data": self.imageData
         ])
     }
 }

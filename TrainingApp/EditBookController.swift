@@ -1,5 +1,7 @@
 import UIKit
 import Kingfisher
+import APIKit
+import Himotoki
 
 class EditBookViewController: UIViewController {
     
@@ -140,6 +142,22 @@ class EditBookViewController: UIViewController {
     
     func tappedEditButton() {
         print("Edit Finished...")
+        let id = book.id
+        let name = bookNameTextField.text!
+        let price = Int(bookPriceTextField.text!)
+        let purchaseDate = purchaseDateField.text!
+        let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
+        let encodedString = data?.base64EncodedString(options: [])
+        let request = EditBookRequest(bookId: id, name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self.navigationController?.popViewController(animated: true)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }

@@ -51,7 +51,7 @@ class BookListViewController: UIViewController {
         Session.send(request) { result in
             switch result {
             case .success(let response):
-                print(response)
+                //print(response)
                 self.books = response.result
                 self.bookTableView.reloadData()
             case .failure(let error):
