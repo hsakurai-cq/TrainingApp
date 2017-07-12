@@ -5,6 +5,7 @@ import Himotoki
 class BookListViewController: UIViewController {
     
     var books: [Book] = []
+    var page = 163
     
     lazy var bookTableView: UITableView = {
         let table = UITableView()
@@ -47,11 +48,11 @@ class BookListViewController: UIViewController {
     }
     
     func fetchBooks() {
-        let request = BookListRequest(page: "0-200")
+        let request = BookListRequest(page: "0-\(page)")
         Session.send(request) { result in
             switch result {
             case .success(let response):
-                //print(response)
+                print(response)
                 self.books = response.result
                 self.bookTableView.reloadData()
             case .failure(let error):
@@ -70,6 +71,18 @@ class BookListViewController: UIViewController {
     func tappedLoadMoreButton() {
         //Todo 読み込み処理
         print("tapped load more button...")
+        page += 1
+        let request = BookListRequest(page: "0-\(page)")
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self.books = response.result
+                self.bookTableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func showBookDetail(book: Book) {
