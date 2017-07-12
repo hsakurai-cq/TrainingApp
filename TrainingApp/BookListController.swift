@@ -69,7 +69,6 @@ class BookListViewController: UIViewController {
     }
     
     func tappedLoadMoreButton() {
-        //Todo 読み込み処理
         print("tapped load more button...")
         page += 1
         let request = BookListRequest(page: "0-\(page)")

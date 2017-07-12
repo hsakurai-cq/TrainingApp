@@ -48,21 +48,20 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let userDefault = UserDefaults.standard
-//        let dict = ["firstLaunch": true]
-//        userDefault.register(defaults: dict)
-//        if userDefault.bool(forKey: "firstLaunch") {
-//            userDefault.set(false, forKey: "firstLaunch")
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-//            print("初回起動(アカウント設定画面)")
-//        } else {
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(modalClose))
-//        }
+        let userDefault = UserDefaults.standard
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            userDefault.set(false, forKey: "firstLaunch")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+            print("初回起動(アカウント設定画面)")
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
+        }
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = R.string.localizable.accountConfigTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
         
         setupConfigViews()
@@ -103,7 +102,12 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
             switch result {
             case .success(let response):
                 print(response)
-                print(result)
+                let userDefault = UserDefaults.standard
+                userDefault.set(response.id, forKey: "user_id")
+                userDefault.set(response.token, forKey: "request_token")
+                let tabBarController = TabBarController()
+                let navController = UINavigationController(rootViewController: tabBarController)
+                self.present(navController, animated: true, completion: nil)
             case .failure(let error):
                 print(error)
             }
