@@ -38,6 +38,7 @@ extension Date {
     
     static func formatConverter(dateString: String) -> String {
         let inFormatter = DateFormatter()
+        inFormatter.locale = Locale(identifier: "en_US_POSIX")
         inFormatter.dateFormat = "EEE, dd MM yyyy HH:mm:ss Z"
         let date: NSDate = inFormatter.date(from: dateString)! as NSDate
         let outFormatter = DateFormatter()
