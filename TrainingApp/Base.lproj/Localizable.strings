@@ -26,5 +26,10 @@
 "errorEmpty" = "%@ is empty";
 "errorCounts" = "%@ counts not enough";
 
+"name" = "Book Name";
+"price" = "Book Price";
+"purchaseDate" = "Purchase Date";
+"imageData" = "Book Image";
+
 "ok" = "OK!";
 "error" = "error";

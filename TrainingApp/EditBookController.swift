@@ -147,6 +147,10 @@ class EditBookViewController: UIViewController {
         let purchaseDate = purchaseDateField.text!
         let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
         let encodedString = data?.base64EncodedString(options: [])
+        let validateResult = Validate.saveBook(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
         let request = EditBookRequest(bookId: id, name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
         Session.send(request) { result in
             switch result {

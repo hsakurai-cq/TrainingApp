@@ -43,4 +43,27 @@ class Validate {
         
         return (true, "")
     }
+    
+    static func saveBook(name: String, price: Int, purchaseDate: String, imageData: String) -> (result: Bool, error: String) {
+        
+        let priceStr = "\(price)"
+        
+        guard !name.isEmpty else {
+            return (false, R.string.localizable.errorEmpty(R.string.localizable.name()))
+        }
+        
+        guard !priceStr.isEmpty else {
+            return (false, R.string.localizable.errorEmpty(R.string.localizable.price()))
+        }
+        
+        guard !purchaseDate.isEmpty else {
+            return (false, R.string.localizable.errorEmpty(R.string.localizable.purchaseDate()))
+        }
+        
+        guard !imageData.isEmpty else {
+            return (false, R.string.localizable.errorEmpty(R.string.localizable.purchaseDate()))
+        }
+        
+        return (true, "")
+    }
 }

@@ -134,20 +134,27 @@ class AddBookViewController: UIViewController {
         let name = bookNameTextField.text!
         let price = Int(bookPriceTextField.text!)
         let purchaseDate = purchaseDateField.text!
-        let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
-        let encodedString = data?.base64EncodedString(options: [])
-        let request = AddBookRequest(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
-         Session.send(request) { result in
-            print(result)
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
+        if let data = registeredImageView.image {
+            let pngData = UIImagePNGRepresentation(data) as NSData?
+            let encodedString = pngData?.base64EncodedString(options: [])
+            let validateResult = Validate.saveBook(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+            guard validateResult.result else {
+                return UIAlertController.showAlert(error: validateResult.error, view: self)
             }
+            let request = AddBookRequest(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+            Session.send(request) { result in
+                print(result)
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            return UIAlertController.showAlert(error: R.string.localizable.errorEmpty(R.string.localizable.imageData()), view: self)
         }
         dismiss(animated: true, completion: nil)
-        
     }
     
 }

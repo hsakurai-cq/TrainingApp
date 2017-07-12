@@ -26,5 +26,10 @@
 "errorEmpty" = "%@ が未入力です";
 "errorCounts" = "%@ の文字数不足です";
 
+"name" = "書籍名";
+"price" = "金額";
+"purchaseDate" = "購入日";
+"imageData" = "画像イメージ";
+
 "ok" = "OK!";
 "error" = "error";
