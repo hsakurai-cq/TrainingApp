@@ -44,15 +44,13 @@ class Validate {
         return (true, "")
     }
     
-    static func saveBook(name: String, price: Int, purchaseDate: String, imageData: String) -> (result: Bool, error: String) {
-        
-        let priceStr = "\(price)"
+    static func saveBook(name: String, price: Int?, purchaseDate: String, imageData: String) -> (result: Bool, error: String) {
         
         guard !name.isEmpty else {
             return (false, R.string.localizable.errorEmpty(R.string.localizable.name()))
         }
         
-        guard !priceStr.isEmpty else {
+        guard price != nil else {
             return (false, R.string.localizable.errorEmpty(R.string.localizable.price()))
         }
         

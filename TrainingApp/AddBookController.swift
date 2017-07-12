@@ -132,12 +132,12 @@ class AddBookViewController: UIViewController {
     
     func addBook() {
         let name = bookNameTextField.text!
-        let price = Int(bookPriceTextField.text!)
+        let price: Int? = Int(bookPriceTextField.text!)
         let purchaseDate = purchaseDateField.text!
         if let data = registeredImageView.image {
             let pngData = UIImagePNGRepresentation(data) as NSData?
             let encodedString = pngData?.base64EncodedString(options: [])
-            let validateResult = Validate.saveBook(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+            let validateResult = Validate.saveBook(name: name, price: price, purchaseDate: purchaseDate, imageData: encodedString!)
             guard validateResult.result else {
                 return UIAlertController.showAlert(error: validateResult.error, view: self)
             }
