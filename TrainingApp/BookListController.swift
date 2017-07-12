@@ -78,6 +78,8 @@ class BookListViewController: UIViewController {
                 print(response)
                 self.books = response.result
                 self.bookTableView.reloadData()
+                let indexPath = NSIndexPath(row: self.books.count - 1, section: 0)
+                self.bookTableView.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
             case .failure(let error):
                 print(error)
             }
@@ -118,6 +120,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
 //Anchor設定
 extension BookListViewController {
     func setupBookListViews() {
+        
         view.addSubview(bookTableView)
         view.addSubview(loadMoreButton)
         
