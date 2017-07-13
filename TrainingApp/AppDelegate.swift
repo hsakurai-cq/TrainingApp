@@ -12,18 +12,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-//        let userDefault = UserDefaults.standard
-//        let dict = ["firstLaunch": true]
-//        userDefault.register(defaults: dict)
-//                if userDefault.bool(forKey: "firstLaunch") {
-//            userDefault.set(false, forKey: "firstLaunch")
-//            window?.rootViewController = UINavigationController(rootViewController: AccountConfigController())
-//            
-//            print("初回起動")
-//        } else {
-//            window?.rootViewController = UINavigationController(rootViewController: LoginController())
-//        }
-        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        let userDefault = UserDefaults.standard
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            window?.rootViewController = UINavigationController(rootViewController: AccountConfigViewController())
+            print("初回起動")
+        } else {
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
+        //window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         return true
     }
 

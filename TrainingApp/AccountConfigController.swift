@@ -1,42 +1,44 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     
-    var txtActiveField = UITextField()
+    fileprivate var txtActiveField = UITextField()
     
     //UI部品設定
-    let emailConfigLabel: UILabel = {
+    fileprivate let emailConfigLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let emailConfigTextField: UITextField = {
+    fileprivate let emailConfigTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let passwordConfigLabel: UILabel = {
+    fileprivate let passwordConfigLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePassword(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordConfigTextField: UITextField = {
+    fileprivate let passwordConfigTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
         return tf
     }()
     
-    let passwordCheckLabel: UILabel = {
+    fileprivate let passwordCheckLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleConfPass(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordCheckTextField: UITextField = {
+    fileprivate let passwordCheckTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
@@ -46,22 +48,36 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let userDefault = UserDefaults.standard
-//        let dict = ["firstLaunch": true]
-//        userDefault.register(defaults: dict)
-//        if userDefault.bool(forKey: "firstLaunch") {
-//            userDefault.set(false, forKey: "firstLaunch")
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-//            print("初回起動(アカウント設定画面)")
-//        } else {
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(modalClose))
-//        }
+        let userDefault = UserDefaults.standard
+        let dict = ["firstLaunch": true]
+        userDefault.register(defaults: dict)
+        if userDefault.bool(forKey: "firstLaunch") {
+            userDefault.set(false, forKey: "firstLaunch")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: R.string.localizable.buttonTitleNil(),
+                style: .plain,
+                target: self,
+                action: nil
+            )
+            print("初回起動(アカウント設定画面)")
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                    title: R.string.localizable.buttonTitleClose(),
+                                                    style: .plain,
+                                                    target: self,
+                                                    action: #selector(tappedCloseButton)
+                                                )
+        }
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = R.string.localizable.accountConfigTitle()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                title: R.string.localizable.buttonTitleSave(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(tappedSaveButton)
+                                            )
         
         setupConfigViews()
         
@@ -89,14 +105,34 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tappedSaveButton() {
-        //Todo 保存処理実装
-        print("save account...")
+        let email = emailConfigTextField.text!
+        let password = passwordConfigTextField.text!
+        let passwordCheck = passwordCheckTextField.text!
+        let validateResult = Validate.signUp(email: email, password: password, passwordCheck: passwordCheck)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
+        let request = SingUpRequest(email: email, password: password)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                let userDefault = UserDefaults.standard
+                userDefault.set(response.id, forKey: "user_id")
+                userDefault.set(response.token, forKey: "request_token")
+                let tabBarController = TabBarController()
+                let navController = UINavigationController(rootViewController: tabBarController)
+                self.present(navController, animated: true, completion: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
 //Anchor設定
 extension AccountConfigViewController {
-    func setupConfigViews() {
+    fileprivate func setupConfigViews() {
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
         view.addSubview(passwordConfigLabel)

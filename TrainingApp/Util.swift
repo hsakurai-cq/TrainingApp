@@ -28,10 +28,32 @@ extension UIButton {
         self.setTitleColor(tintColor, for: .normal)
     }
 }
+
 extension Date {
     static func toString(sender: UIDatePicker) -> String {
         let dateFormmtter = DateFormatter()
         dateFormmtter.dateFormat = Constants.dateFormat
         return dateFormmtter.string(from: sender.date)
+    }
+    
+    static func formatConverter(dateString: String) -> String {
+        let inFormatter = DateFormatter()
+        if let userLocale = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
+            inFormatter.locale = Locale(identifier: userLocale)
+        }
+        inFormatter.dateFormat = "EEE, dd MM yyyy HH:mm:ss Z"
+        let date: NSDate = inFormatter.date(from: dateString)! as NSDate
+        let outFormatter = DateFormatter()
+        outFormatter.dateFormat = Constants.dateFormat
+        return outFormatter.string(from: date as Date)
+    }
+}
+
+extension UIAlertController {
+    static func showAlert(error: String, view: UIViewController) {
+        let alert = UIAlertController(title: R.string.localizable.error(), message: error, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: R.string.localizable.ok(), style: .default, handler: nil)
+        alert.addAction(alertAction)
+        view.present(alert, animated: true, completion: nil)
     }
 }

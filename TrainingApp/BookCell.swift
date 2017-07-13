@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class BookTableViewCell: UITableViewCell {
     
@@ -12,35 +13,45 @@ class BookTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let bookImageView: UIImageView = {
+    fileprivate let bookImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = UIColor.red
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let titleLabel: UILabel = {
+    fileprivate let titleLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "PHP辞典", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let priceLabel: UILabel = {
+    fileprivate let priceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "3200円 + 税", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let dateLabel: UILabel = {
+    fileprivate let dateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "2017-06-30", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
+    func setCell(book: Book) {
+        titleLabel.text = book.name
+        priceLabel.text = "\(book.price) \(R.string.localizable.yen())"
+        dateLabel.text =  Date.formatConverter(dateString: book.purchaseDate)
+        let imageURL = URL(string: book.imageData)
+        bookImageView.kf.indicatorType = .activity
+        bookImageView.kf.setImage(with: imageURL)
+    }
 }
 
 extension BookTableViewCell {
-    func setupCellViews() {
+    fileprivate func setupCellViews() {
         contentView.addSubview(bookImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)

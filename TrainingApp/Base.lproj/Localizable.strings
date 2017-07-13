@@ -18,3 +18,19 @@
 "labelTitleBook" = "Book";
 "labelTitlePrice" = "Price";
 "labelTitlePurchaseDate" = "Purchase Date";
+
+"email" = "Email Field";
+"password" = "Password Field";
+"passwordCheck" = "Password Check Field";
+"passwordMismatch" = "Password Mismatch";
+"errorEmpty" = "%@ is empty";
+"errorCounts" = "%@ counts not enough";
+
+"name" = "Book Name";
+"price" = "Book Price";
+"purchaseDate" = "Purchase Date";
+"imageData" = "Book Image";
+"yen" = "Yen";
+
+"ok" = "OK!";
+"error" = "error";

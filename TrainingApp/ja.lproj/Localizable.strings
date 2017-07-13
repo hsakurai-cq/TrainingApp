@@ -18,3 +18,19 @@
 "labelTitleBook" = "書籍";
 "labelTitlePrice" = "金額";
 "labelTitlePurchaseDate" = "購入日";
+
+"email" = "メールアドレス";
+"password" = "パスワード";
+"passwordCheck" = "パスワード確認欄";
+"passwordMismatch" = "パスワード不一致";
+"errorEmpty" = "%@ が未入力です";
+"errorCounts" = "%@ の文字数不足です";
+
+"name" = "書籍名";
+"price" = "金額";
+"purchaseDate" = "購入日";
+"imageData" = "画像イメージ";
+"yen" = "円";
+
+"ok" = "OK!";
+"error" = "error";

@@ -1,62 +1,64 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class AddBookViewController: UIViewController {
     
     var txtActiveField = UITextField()
     
     //UI部品設定
-    let registeredImageView: UIImageView = {
+    fileprivate let registeredImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
     }()
     
-    let registerImageButton: UIButton = {
+    fileprivate let registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleSetImage(), tintColor: .white)
         button.addTarget(self, action: #selector(registerImage), for: .touchUpInside)
         return button
     }()
     
-    let bookNameLabel: UILabel = {
+    fileprivate let bookNameLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleBook(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let bookNameTextField: UITextField = {
+    fileprivate let bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let bookPriceLabel: UILabel = {
+    fileprivate let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePrice(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let bookPriceTextField: UITextField = {
+    fileprivate let bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.keyboardType = .numberPad
         return tf
     }()
     
-    let purchaseDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let purchaseDateField: UITextField = {
+    fileprivate let purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let datePicker: UIDatePicker = {
+    fileprivate let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.addTarget(self, action: #selector(changedDateEvent), for: .valueChanged)
         picker.datePickerMode = .date
@@ -124,7 +126,35 @@ class AddBookViewController: UIViewController {
     }
     
     func tappedSaveButton() {
+        addBook()
         print("save book...")
+    }
+    
+    func addBook() {
+        let name = bookNameTextField.text!
+        let price: Int? = Int(bookPriceTextField.text!)
+        let purchaseDate = purchaseDateField.text!
+        if let data = registeredImageView.image {
+            let pngData = UIImagePNGRepresentation(data) as NSData?
+            let encodedString = pngData?.base64EncodedString(options: [])
+            let validateResult = Validate.saveBook(name: name, price: price, purchaseDate: purchaseDate, imageData: encodedString!)
+            guard validateResult.result else {
+                return UIAlertController.showAlert(error: validateResult.error, view: self)
+            }
+            let request = AddBookRequest(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+            Session.send(request) { result in
+                print(result)
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            return UIAlertController.showAlert(error: R.string.localizable.errorEmpty(R.string.localizable.imageData()), view: self)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
 }
@@ -185,7 +215,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
 
 //Ancho設定
 extension AddBookViewController {
-    func setupAddBookViews() {
+    fileprivate func setupAddBookViews() {
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)
         view.addSubview(bookNameLabel)

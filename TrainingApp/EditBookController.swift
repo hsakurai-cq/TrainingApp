@@ -1,62 +1,80 @@
 import UIKit
+import Kingfisher
+import APIKit
+import Himotoki
 
 class EditBookViewController: UIViewController {
     
-    var txtActiveField = UITextField()
+    fileprivate var registeredImageURL: URL!
+    
+    var book: Book! {
+        didSet {
+            bookNameTextField.text = self.book.name
+            bookPriceTextField.text = "\(self.book.price)"
+            purchaseDateField.text = Date.formatConverter(dateString: self.book.purchaseDate)
+            registeredImageURL = URL(string: self.book.imageData)!
+        }
+    }
+    private var txtActiveField = UITextField()
     
     //UI部品設定
-    let registeredImageView: UIImageView = {
+    fileprivate lazy var registeredImageView: UIImageView = {
         let imageView = UIImageView()
+        let imageURL = self.registeredImageURL
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: imageURL)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         return imageView
     }()
     
-    let registerImageButton: UIButton = {
+    fileprivate let registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleSetImage(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
         return button
     }()
     
-    let bookNameLabel: UILabel = {
+    fileprivate let bookNameLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text:  R.string.localizable.labelTitleBook(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let bookNameTextField: UITextField = {
+    fileprivate lazy var bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let bookPriceLabel: UILabel = {
+    fileprivate let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePrice(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let bookPriceTextField: UITextField = {
+    fileprivate lazy var bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.keyboardType = UIKeyboardType.numberPad
         return tf
     }()
     
-    let purchaseDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let purchaseDateField: UITextField = {
+    fileprivate lazy var purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let datePicker: UIDatePicker = {
+    fileprivate let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.addTarget(self, action: #selector(changedDateEvent), for: .valueChanged)
         picker.datePickerMode = .date
@@ -81,8 +99,18 @@ class EditBookViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.navigationItem.title = R.string.localizable.editBookTitle()
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(tappedBackButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedEditButton))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleBack(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: #selector(tappedBackButton)
+                                                                    )
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleSave(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: #selector(tappedEditButton)
+                                                                    )
         
         //以下、キーボード高さ変更処理
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -129,7 +157,27 @@ class EditBookViewController: UIViewController {
     }
     
     func tappedEditButton() {
-        print("Edit Finished...")
+        let id = book.id
+        let name = bookNameTextField.text!
+        let price = Int(bookPriceTextField.text!)
+        let purchaseDate = purchaseDateField.text!
+        let data: NSData? = UIImagePNGRepresentation(registeredImageView.image!) as NSData?
+        let encodedString = data?.base64EncodedString(options: [])
+        let validateResult = Validate.saveBook(name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
+        let request = EditBookRequest(bookId: id, name: name, price: price!, purchaseDate: purchaseDate, imageData: encodedString!)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                print("Edit Finished...")
+                self.navigationController?.popViewController(animated: true)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
@@ -185,7 +233,7 @@ extension EditBookViewController: UIImagePickerControllerDelegate, UINavigationC
 
 //Anchor設定
 extension EditBookViewController {
-        func setupEditBookViews() {
+        fileprivate func setupEditBookViews() {
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)
         view.addSubview(bookNameLabel)

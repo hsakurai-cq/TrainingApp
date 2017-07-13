@@ -1,34 +1,36 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class LoginViewController: UIViewController {
     
     //UI部品設定
-    let emailLabel: UILabel = {
+    fileprivate let emailLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let emailTextField: UITextField = {
+    fileprivate let emailTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let passwordLabel: UILabel = {
+    fileprivate let passwordLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePassword(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordTextField: UITextField = {
+    fileprivate let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
         return tf
     }()
     
-    lazy var loginButton: UIButton = {
+    fileprivate lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleLogin(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
@@ -46,12 +48,31 @@ class LoginViewController: UIViewController {
         self.passwordTextField.delegate = self
         
         setupLoginViews()
+        
     }
     
     func tappedLoginButton() {
-        let tabBarController = TabBarController()
-        let navController = UINavigationController(rootViewController: tabBarController)
-        present(navController, animated: true, completion: nil)
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        let validateResult = Validate.login(email: email, password: password)
+        guard validateResult.result else {
+            return UIAlertController.showAlert(error: validateResult.error, view: self)
+        }
+        let request = LoginRequest(email: email, password: password)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                let userDefault = UserDefaults.standard
+                userDefault.set(response.id, forKey: "user_id")
+                userDefault.set(response.token, forKey: "request_token")
+                let tabBarController = TabBarController()
+                let navController = UINavigationController(rootViewController: tabBarController)
+                self.present(navController, animated: true, completion: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
@@ -74,7 +95,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 //Anchor設定
 extension LoginViewController {
-    func setupLoginViews() {
+    fileprivate func setupLoginViews() {
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)
         view.addSubview(passwordLabel)
