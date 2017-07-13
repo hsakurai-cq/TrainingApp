@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefault = UserDefaults.standard
         let dict = ["firstLaunch": true]
         userDefault.register(defaults: dict)
-                if userDefault.bool(forKey: "firstLaunch") {
-            //userDefault.set(false, forKey: "firstLaunch")
+        if userDefault.bool(forKey: "firstLaunch") {
             window?.rootViewController = UINavigationController(rootViewController: AccountConfigViewController())
-            
             print("初回起動")
         } else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
