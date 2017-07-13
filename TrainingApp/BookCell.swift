@@ -24,25 +24,25 @@ class BookTableViewCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "あかさたな", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "3200円 + 税", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.labelConfig(text: "2017-06-30", font: .systemFont(ofSize: 15), backgroundColor: .white)
+        label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
     func setCell(book: Book) {
         titleLabel.text = book.name
-        priceLabel.text = "\(book.price) yen"
+        priceLabel.text = "\(book.price) \(R.string.localizable.yen())"
         dateLabel.text =  Date.formatConverter(dateString: book.purchaseDate)
         let imageURL = URL(string: book.imageData)
         bookImageView.kf.indicatorType = .activity

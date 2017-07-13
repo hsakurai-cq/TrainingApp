@@ -30,6 +30,7 @@
 "price" = "Book Price";
 "purchaseDate" = "Purchase Date";
 "imageData" = "Book Image";
+"yen" = "Yen";
 
 "ok" = "OK!";
 "error" = "error";

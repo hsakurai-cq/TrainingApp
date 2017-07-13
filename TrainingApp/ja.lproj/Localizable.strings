@@ -30,6 +30,7 @@
 "price" = "金額";
 "purchaseDate" = "購入日";
 "imageData" = "画像イメージ";
+"yen" = "円";
 
 "ok" = "OK!";
 "error" = "error";
