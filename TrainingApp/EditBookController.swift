@@ -5,13 +5,22 @@ import Himotoki
 
 class EditBookViewController: UIViewController {
     
-    var book: Book!
+    var registeredImageURL: URL!
+    
+    var book: Book! {
+        didSet {
+            bookNameTextField.text = self.book.name
+            bookPriceTextField.text = "\(self.book.price)"
+            purchaseDateField.text = Date.formatConverter(dateString: self.book.purchaseDate)
+            registeredImageURL = URL(string: self.book.imageData)!
+        }
+    }
     var txtActiveField = UITextField()
     
     //UI部品設定
     lazy var registeredImageView: UIImageView = {
         let imageView = UIImageView()
-        let imageURL = URL(string: self.book.imageData)
+        let imageURL = self.registeredImageURL
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL)
         imageView.contentMode = .scaleAspectFill
@@ -37,7 +46,6 @@ class EditBookViewController: UIViewController {
     lazy var bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
-        tf.text = self.book.name
         return tf
     }()
     
@@ -50,7 +58,6 @@ class EditBookViewController: UIViewController {
     lazy var bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
-        tf.text = "\(self.book.price)"
         tf.keyboardType = UIKeyboardType.numberPad
         return tf
     }()
@@ -64,7 +71,6 @@ class EditBookViewController: UIViewController {
     lazy var purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
-        tf.text = Date.formatConverter(dateString: self.book.purchaseDate)
         return tf
     }()
     

@@ -89,7 +89,7 @@ class BookListViewController: UIViewController {
                 self.books = response.result
                 self.bookTableView.reloadData()
                 let indexPath = IndexPath(row: self.books.count - 1, section: 0)
-                self.bookTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: true)
+                self.bookTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             case .failure(let error):
                 print(error)
             }
