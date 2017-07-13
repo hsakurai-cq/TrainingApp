@@ -53,16 +53,31 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
         userDefault.register(defaults: dict)
         if userDefault.bool(forKey: "firstLaunch") {
             userDefault.set(false, forKey: "firstLaunch")
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                title: R.string.localizable.buttonTitleNil(),
+                style: .plain,
+                target: self,
+                action: nil
+            )
             print("初回起動(アカウント設定画面)")
         } else {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleClose(), style: .plain, target: self, action: #selector(tappedCloseButton))
+            navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                    title: R.string.localizable.buttonTitleClose(),
+                                                    style: .plain,
+                                                    target: self,
+                                                    action: #selector(tappedCloseButton)
+                                                )
         }
         
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = R.string.localizable.accountConfigTitle()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedSaveButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                title: R.string.localizable.buttonTitleSave(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(tappedSaveButton)
+                                            )
         
         setupConfigViews()
         

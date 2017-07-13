@@ -93,8 +93,18 @@ class EditBookViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.navigationItem.title = R.string.localizable.editBookTitle()
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleBack(), style: .plain, target: self, action: #selector(tappedBackButton))
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleSave(), style: .plain, target: self, action: #selector(tappedEditButton))
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleBack(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: #selector(tappedBackButton)
+                                                                    )
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleSave(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: #selector(tappedEditButton)
+                                                                    )
         
         //以下、キーボード高さ変更処理
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

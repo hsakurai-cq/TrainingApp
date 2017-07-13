@@ -41,8 +41,18 @@ class BookListViewController: UIViewController {
         
         //viewDidLoadに書くと他のviewControllerから戻って来た時反映されないため
         self.tabBarController?.navigationItem.title = R.string.localizable.bookListTitle()
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleAdd(), style: .plain, target: self, action: #selector(tappedAddButton))
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleAdd(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: #selector(tappedAddButton)
+                                                                    )
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleNil(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: nil
+                                                                    )
         
         fetchBooks()
     }

@@ -22,8 +22,18 @@ class ConfigurationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.navigationItem.title = R.string.localizable.buttonTitleConfig()
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
-        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.buttonTitleNil(), style: .plain, target: self, action: nil)
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleNil(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: nil
+                                                                    )
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem (
+                                                                        title: R.string.localizable.buttonTitleNil(),
+                                                                        style: .plain,
+                                                                        target: self,
+                                                                        action: nil
+                                                                    )
     }
     
     func tappedConfigButton() {
