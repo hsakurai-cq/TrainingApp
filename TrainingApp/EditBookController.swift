@@ -5,7 +5,7 @@ import Himotoki
 
 class EditBookViewController: UIViewController {
     
-    var registeredImageURL: URL!
+    fileprivate var registeredImageURL: URL!
     
     var book: Book! {
         didSet {
@@ -15,10 +15,10 @@ class EditBookViewController: UIViewController {
             registeredImageURL = URL(string: self.book.imageData)!
         }
     }
-    var txtActiveField = UITextField()
+    private var txtActiveField = UITextField()
     
     //UI部品設定
-    lazy var registeredImageView: UIImageView = {
+    fileprivate lazy var registeredImageView: UIImageView = {
         let imageView = UIImageView()
         let imageURL = self.registeredImageURL
         imageView.kf.indicatorType = .activity
@@ -30,51 +30,51 @@ class EditBookViewController: UIViewController {
         return imageView
     }()
     
-    let registerImageButton: UIButton = {
+    fileprivate let registerImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleSetImage(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedRegisterImageButton), for: .touchUpInside)
         return button
     }()
     
-    let bookNameLabel: UILabel = {
+    fileprivate let bookNameLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text:  R.string.localizable.labelTitleBook(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    lazy var bookNameTextField: UITextField = {
+    fileprivate lazy var bookNameTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let bookPriceLabel: UILabel = {
+    fileprivate let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePrice(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    lazy var bookPriceTextField: UITextField = {
+    fileprivate lazy var bookPriceTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.keyboardType = UIKeyboardType.numberPad
         return tf
     }()
     
-    let purchaseDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePurchaseDate(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    lazy var purchaseDateField: UITextField = {
+    fileprivate lazy var purchaseDateField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let datePicker: UIDatePicker = {
+    fileprivate let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.addTarget(self, action: #selector(changedDateEvent), for: .valueChanged)
         picker.datePickerMode = .date
@@ -233,7 +233,7 @@ extension EditBookViewController: UIImagePickerControllerDelegate, UINavigationC
 
 //Anchor設定
 extension EditBookViewController {
-        func setupEditBookViews() {
+        fileprivate func setupEditBookViews() {
         view.addSubview(registeredImageView)
         view.addSubview(registerImageButton)
         view.addSubview(bookNameLabel)

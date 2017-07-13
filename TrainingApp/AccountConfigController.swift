@@ -4,41 +4,41 @@ import Himotoki
 
 class AccountConfigViewController: UIViewController, UITextFieldDelegate {
     
-    var txtActiveField = UITextField()
+    fileprivate var txtActiveField = UITextField()
     
     //UI部品設定
-    let emailConfigLabel: UILabel = {
+    fileprivate let emailConfigLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let emailConfigTextField: UITextField = {
+    fileprivate let emailConfigTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let passwordConfigLabel: UILabel = {
+    fileprivate let passwordConfigLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePassword(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordConfigTextField: UITextField = {
+    fileprivate let passwordConfigTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
         return tf
     }()
     
-    let passwordCheckLabel: UILabel = {
+    fileprivate let passwordCheckLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleConfPass(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordCheckTextField: UITextField = {
+    fileprivate let passwordCheckTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
@@ -132,7 +132,7 @@ class AccountConfigViewController: UIViewController, UITextFieldDelegate {
 
 //Anchor設定
 extension AccountConfigViewController {
-    func setupConfigViews() {
+    fileprivate func setupConfigViews() {
         view.addSubview(emailConfigLabel)
         view.addSubview(emailConfigTextField)
         view.addSubview(passwordConfigLabel)

@@ -5,32 +5,32 @@ import Himotoki
 class LoginViewController: UIViewController {
     
     //UI部品設定
-    let emailLabel: UILabel = {
+    fileprivate let emailLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitleEmail(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let emailTextField: UITextField = {
+    fileprivate let emailTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         return tf
     }()
     
-    let passwordLabel: UILabel = {
+    fileprivate let passwordLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: R.string.localizable.labelTitlePassword(), font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let passwordTextField: UITextField = {
+    fileprivate let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.textFieldConfig()
         tf.isSecureTextEntry = true
         return tf
     }()
     
-    lazy var loginButton: UIButton = {
+    fileprivate lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleLogin(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
@@ -95,7 +95,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 //Anchor設定
 extension LoginViewController {
-    func setupLoginViews() {
+    fileprivate func setupLoginViews() {
         view.addSubview(emailLabel)
         view.addSubview(emailTextField)
         view.addSubview(passwordLabel)

@@ -2,7 +2,7 @@ import UIKit
 
 class ConfigurationViewController: UIViewController {
     
-    lazy var configureButton: UIButton = {
+    fileprivate lazy var configureButton: UIButton = {
         let button = UIButton(type: .system)
         button.buttonConfig(backgroundColor: .gray, font: .systemFont(ofSize: 16), tite: R.string.localizable.buttonTitleConfig(), tintColor: .white)
         button.addTarget(self, action: #selector(tappedConfigButton), for: .touchUpInside)
@@ -45,7 +45,7 @@ class ConfigurationViewController: UIViewController {
 }
 
 extension ConfigurationViewController {
-    func setupConfigureButton() {
+    fileprivate func setupConfigureButton() {
         view.addSubview(configureButton)
         configureButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30).isActive = true
         configureButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true

@@ -4,10 +4,10 @@ import Himotoki
 
 class BookListViewController: UIViewController {
     
-    var books: [Book] = []
-    var page = 163
+    fileprivate var books: [Book] = []
+    private var page = 163
     
-    lazy var bookTableView: UITableView = {
+    fileprivate lazy var bookTableView: UITableView = {
         let table = UITableView()
         table.rowHeight = 100
         table.register(BookTableViewCell.self, forCellReuseIdentifier: Constants.bookCell)
@@ -17,7 +17,7 @@ class BookListViewController: UIViewController {
         return table
     }()
     
-    let loadMoreButton: UIButton = {
+    fileprivate let loadMoreButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.lightGray
         button.setTitle(R.string.localizable.buttonTitleLoadMore(), for: .normal)
@@ -57,7 +57,7 @@ class BookListViewController: UIViewController {
         fetchBooks()
     }
     
-    func fetchBooks() {
+    private func fetchBooks() {
         let request = BookListRequest(page: "0-\(page)")
         Session.send(request) { result in
             switch result {
@@ -96,7 +96,7 @@ class BookListViewController: UIViewController {
         }
     }
     
-    func showBookDetail(book: Book) {
+    fileprivate func showBookDetail(book: Book) {
         let editBookController = EditBookViewController()
         editBookController.book = book
         navigationController?.pushViewController(editBookController, animated: true)
@@ -129,7 +129,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
 
 //Anchor設定
 extension BookListViewController {
-    func setupBookListViews() {
+    fileprivate func setupBookListViews() {
         
         view.addSubview(bookTableView)
         view.addSubview(loadMoreButton)

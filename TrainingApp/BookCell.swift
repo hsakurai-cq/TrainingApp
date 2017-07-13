@@ -13,7 +13,7 @@ class BookTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let bookImageView: UIImageView = {
+    fileprivate let bookImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = UIColor.red
         view.contentMode = .scaleAspectFill
@@ -22,19 +22,19 @@ class BookTableViewCell: UITableViewCell {
         return view
     }()
     
-    let titleLabel: UILabel = {
+    fileprivate let titleLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let priceLabel: UILabel = {
+    fileprivate let priceLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
     }()
     
-    let dateLabel: UILabel = {
+    fileprivate let dateLabel: UILabel = {
         let label = UILabel()
         label.labelConfig(text: "", font: .systemFont(ofSize: 15), backgroundColor: .white)
         return label
@@ -51,7 +51,7 @@ class BookTableViewCell: UITableViewCell {
 }
 
 extension BookTableViewCell {
-    func setupCellViews() {
+    fileprivate func setupCellViews() {
         contentView.addSubview(bookImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
